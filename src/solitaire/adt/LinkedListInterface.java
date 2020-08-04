@@ -12,5 +12,5 @@ public interface LinkedListInterface<T> {
     public boolean isEmpty();
     public boolean isFull();
     public LinkedListInterface<T> split(int startPos); //Maybe used to split piles of cards into 2 different piles
-    public LinkedListInterface<T> join(LinkedListInterface<T> newPiles); //Join one pile of cards to another pile of cards
+    public void join(LinkedListInterface<T> newPiles); //Join one pile of cards to another pile of cards
 }

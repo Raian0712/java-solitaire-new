@@ -138,8 +138,12 @@ public class LinkedList<T> implements LinkedListInterface<T> {
     }
 
     @Override
-    public LinkedListInterface<T> join(LinkedListInterface<T> newPiles) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    //if arr = {10, 20} and anotherArr = {30, 40, 50}
+    //then after arr.join(anotherArr), arr = {10, 20, 30, 40, 50} while anotherArr will be null
+    public void join(LinkedListInterface<T> newPiles) {
+        while (newPiles.length() >= 1) {
+            this.add(newPiles.remove(1));
+        }
     }
 
     private class Node {
