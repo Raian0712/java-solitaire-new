@@ -38,7 +38,25 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     @Override
     public T remove(int position) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        T result = null;                 // return value
+
+        if ((position >= 1) && (position <= length)) {
+            if (position == 1) {      // case 1: remove first entry
+                result = firstNode.data;     // save entry to be removed
+                firstNode = firstNode.next;
+            } else {                         // case 2: givenPosition > 1
+                Node nodeBefore = firstNode;
+                for (int i = 1; i < position - 1; ++i) {
+                    nodeBefore = nodeBefore.next;		// advance nodeBefore to its next node
+                }
+                result = nodeBefore.next.data;  // save entry to be removed
+                nodeBefore.next = nodeBefore.next.next;	// make node before point to node after the
+            } 																// one to be deleted (to disconnect node from chain)
+
+            length--;
+        }
+
+        return result; // return removed entry, or null if operation fails
     }
 
     @Override
@@ -83,7 +101,7 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     @Override
     public boolean isFull() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return false;
     }
 
     @Override
@@ -93,17 +111,24 @@ public class LinkedList<T> implements LinkedListInterface<T> {
         if (startPos > length) {
             return null;
         } else {
-            //First split
-            Node currentNode = firstNode;
-            //i dont even know why need to minus 2 and not 1 wtf
-            for (int i = 0; i < startPos - 2; i++) {
-                currentNode = currentNode.next;	
-            }
+            int startPosForRemove = startPos; //only used during the second split.
             
-            //Second split, will be returned
+            //First split, will be returned
             LinkedListInterface<T> arrSplit = new LinkedList<>();
             while (startPos <= length) {
                 arrSplit.add(this.getEntry(startPos++));
+            }
+            
+            //Second split
+            Node currentNode = firstNode;
+            for (int i = 0; i < length - 1; i++) {
+                currentNode = currentNode.next;
+            }
+            
+            System.out.println(length);
+            System.out.println(startPosForRemove);
+            for (int i = length; i >= startPosForRemove; i--) {
+                this.remove(i);
             }
             
             currentNode.next = null;
