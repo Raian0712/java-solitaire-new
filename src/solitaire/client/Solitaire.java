@@ -5,6 +5,8 @@
  */
 package solitaire.client;
 
+import java.awt.Point;
+
 /**
  *
  * @author USER
@@ -35,22 +37,32 @@ public class Solitaire extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/solitaire/client/image/bonk.png"))); // NOI18N
+        jButton2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jButton2MouseDragged(evt);
+            }
+        });
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton2MouseReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(50, 50, 50)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(222, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -66,6 +78,32 @@ public class Solitaire extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    Point initialPoint = null;
+    Point xyDifference = null;
+    
+    private void jButton2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseDragged
+        Point oriPoint = jButton2.getLocation(); // get the point of the object
+        
+        if (initialPoint == null || xyDifference == null) {
+            initialPoint = evt.getLocationOnScreen(); // init points for mouse
+            xyDifference = jButton2.getMousePosition(); //get the mouse position on the object
+        }
+        Point mousePoint = evt.getLocationOnScreen(); // (loop) get points for mouse
+        //title bar offset: (5, 30)
+        //calculates how much to move the object
+        Point movePoint = new Point(mousePoint.x - oriPoint.x - xyDifference.x - 5, mousePoint.y - oriPoint.y - xyDifference.y - 30);
+        
+        //sets the location
+        jButton2.setLocation((oriPoint.x + movePoint.x), (oriPoint.y + movePoint.y));
+        
+        
+    }//GEN-LAST:event_jButton2MouseDragged
+
+    private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
+        //after releasing the button, set this back to null to reobtain mouse position on the object
+        xyDifference = null;
+    }//GEN-LAST:event_jButton2MouseReleased
 
     /**
      * @param args the command line arguments
