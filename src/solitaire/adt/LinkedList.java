@@ -9,9 +9,9 @@ package solitaire.adt;
  *
  * @author USER
  */
-public class LinkedList<T> implements LinkedListInterface<T> {
+public class LinkedList<T> {
 
-    private Node firstNode;
+    /*private Node firstNode;
     private int length = 0;
 
     @Override
@@ -171,6 +171,6 @@ public class LinkedList<T> implements LinkedListInterface<T> {
             currentNode = currentNode.next;
         }
         return outputStr;
-    }
+    }*/
 
 }
