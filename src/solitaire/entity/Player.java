@@ -1,7 +1,8 @@
 package solitaire.entity;
 
-public class Game {
+public class Player {
     int score;
+    int move;
 
     public int getScore() {
         return score;
@@ -28,14 +29,14 @@ public class Game {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Game other = (Game) obj;
+        final Player other = (Player) obj;
         if (this.score != other.score) {
             return false;
         }
         return true;
     }
 
-    public Game() {
+    public Player() {
     
     }
 }

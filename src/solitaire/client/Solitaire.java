@@ -5,7 +5,16 @@
  */
 package solitaire.client;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import javax.swing.*;
+import solitaire.entity.DrawDeck;
 
 /**
  *
@@ -18,6 +27,7 @@ public class Solitaire extends javax.swing.JFrame {
      */
     public Solitaire() {
         initComponents();
+        initCards();
     }
 
     /**
@@ -30,50 +40,221 @@ public class Solitaire extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        CardSlot1 = new javax.swing.JPanel();
+        CardSlot2 = new javax.swing.JPanel();
+        CardSlot3 = new javax.swing.JPanel();
+        CardSlot4 = new javax.swing.JPanel();
+        CardSlot5 = new javax.swing.JPanel();
+        CardSlot6 = new javax.swing.JPanel();
+        CardSlot7 = new javax.swing.JPanel();
+        CardSlot8 = new javax.swing.JPanel();
+        DrawSlot = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/solitaire/client/image/bonk.png"))); // NOI18N
-        jButton2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jButton2MouseDragged(evt);
-            }
-        });
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton2MouseReleased(evt);
-            }
-        });
+        jLayeredPane1.setBackground(new java.awt.Color(153, 255, 102));
+
+        CardSlot1.setPreferredSize(new java.awt.Dimension(63, 100));
+
+        javax.swing.GroupLayout CardSlot1Layout = new javax.swing.GroupLayout(CardSlot1);
+        CardSlot1.setLayout(CardSlot1Layout);
+        CardSlot1Layout.setHorizontalGroup(
+            CardSlot1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot1Layout.setVerticalGroup(
+            CardSlot1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        CardSlot2.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout CardSlot2Layout = new javax.swing.GroupLayout(CardSlot2);
+        CardSlot2.setLayout(CardSlot2Layout);
+        CardSlot2Layout.setHorizontalGroup(
+            CardSlot2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot2Layout.setVerticalGroup(
+            CardSlot2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        CardSlot3.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout CardSlot3Layout = new javax.swing.GroupLayout(CardSlot3);
+        CardSlot3.setLayout(CardSlot3Layout);
+        CardSlot3Layout.setHorizontalGroup(
+            CardSlot3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot3Layout.setVerticalGroup(
+            CardSlot3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        CardSlot4.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout CardSlot4Layout = new javax.swing.GroupLayout(CardSlot4);
+        CardSlot4.setLayout(CardSlot4Layout);
+        CardSlot4Layout.setHorizontalGroup(
+            CardSlot4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot4Layout.setVerticalGroup(
+            CardSlot4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        CardSlot5.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout CardSlot5Layout = new javax.swing.GroupLayout(CardSlot5);
+        CardSlot5.setLayout(CardSlot5Layout);
+        CardSlot5Layout.setHorizontalGroup(
+            CardSlot5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot5Layout.setVerticalGroup(
+            CardSlot5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        CardSlot6.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout CardSlot6Layout = new javax.swing.GroupLayout(CardSlot6);
+        CardSlot6.setLayout(CardSlot6Layout);
+        CardSlot6Layout.setHorizontalGroup(
+            CardSlot6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot6Layout.setVerticalGroup(
+            CardSlot6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        CardSlot7.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout CardSlot7Layout = new javax.swing.GroupLayout(CardSlot7);
+        CardSlot7.setLayout(CardSlot7Layout);
+        CardSlot7Layout.setHorizontalGroup(
+            CardSlot7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot7Layout.setVerticalGroup(
+            CardSlot7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        CardSlot8.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout CardSlot8Layout = new javax.swing.GroupLayout(CardSlot8);
+        CardSlot8.setLayout(CardSlot8Layout);
+        CardSlot8Layout.setHorizontalGroup(
+            CardSlot8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        CardSlot8Layout.setVerticalGroup(
+            CardSlot8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        DrawSlot.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout DrawSlotLayout = new javax.swing.GroupLayout(DrawSlot);
+        DrawSlot.setLayout(DrawSlotLayout);
+        DrawSlotLayout.setHorizontalGroup(
+            DrawSlotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        DrawSlotLayout.setVerticalGroup(
+            DrawSlotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
+        jLayeredPane1.setLayer(CardSlot1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CardSlot2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CardSlot3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CardSlot4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CardSlot5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CardSlot6, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CardSlot7, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(CardSlot8, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(DrawSlot, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(CardSlot1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CardSlot2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CardSlot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CardSlot4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CardSlot5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CardSlot6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CardSlot7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DrawSlot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CardSlot2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CardSlot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 311, Short.MAX_VALUE)
+                .addComponent(DrawSlot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(222, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(113, 113, 113))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLayeredPane1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -81,29 +262,6 @@ public class Solitaire extends javax.swing.JFrame {
 
     Point initialPoint = null;
     Point xyDifference = null;
-    
-    private void jButton2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseDragged
-        Point oriPoint = jButton2.getLocation(); // get the point of the object
-        
-        if (initialPoint == null || xyDifference == null) {
-            initialPoint = evt.getLocationOnScreen(); // init points for mouse
-            xyDifference = jButton2.getMousePosition(); //get the mouse position on the object
-        }
-        Point mousePoint = evt.getLocationOnScreen(); // (loop) get points for mouse
-        //title bar offset: (5, 30)
-        //calculates how much to move the object
-        Point movePoint = new Point(mousePoint.x - oriPoint.x - xyDifference.x - 5, mousePoint.y - oriPoint.y - xyDifference.y - 30);
-        
-        //sets the location
-        jButton2.setLocation((oriPoint.x + movePoint.x), (oriPoint.y + movePoint.y));
-        
-        
-    }//GEN-LAST:event_jButton2MouseDragged
-
-    private void jButton2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseReleased
-        //after releasing the button, set this back to null to reobtain mouse position on the object
-        xyDifference = null;
-    }//GEN-LAST:event_jButton2MouseReleased
 
     /**
      * @param args the command line arguments
@@ -141,7 +299,328 @@ public class Solitaire extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel CardSlot1;
+    public javax.swing.JPanel CardSlot2;
+    public javax.swing.JPanel CardSlot3;
+    public javax.swing.JPanel CardSlot4;
+    public javax.swing.JPanel CardSlot5;
+    public javax.swing.JPanel CardSlot6;
+    public javax.swing.JPanel CardSlot7;
+    public javax.swing.JPanel CardSlot8;
+    public javax.swing.JPanel DrawSlot;
+    public javax.swing.JLayeredPane jLayeredPane1;
+    public javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    
+    //Change to Card class
+    private final static int CARD_NUM = 51;
+    DragLabel labels[] = new DragLabel[CARD_NUM];
+    JPanel cardSlots[] = new JPanel[8];
+    
+    DrawDeck initialDeck = new DrawDeck();
+
+    //Change to Slot class
+    ArrayList<DragLabel> cardsInSlot1 = new ArrayList<>();
+    ArrayList<DragLabel> cardsInSlot2 = new ArrayList<>();
+    ArrayList<DragLabel> cardsInSlot3 = new ArrayList<>();
+    ArrayList<DragLabel> cardsInSlot4 = new ArrayList<>();
+    ArrayList<DragLabel> cardsInSlot5 = new ArrayList<>();
+    ArrayList<DragLabel> cardsInSlot6 = new ArrayList<>();
+    ArrayList<DragLabel> cardsInSlot7 = new ArrayList<>();
+    ArrayList<DragLabel> cardsInSlot8 = new ArrayList<>();
+    ArrayList<ArrayList<DragLabel>> cardSlotsList = new ArrayList<>();
+    ArrayList<DragLabel> cardsDragged = new ArrayList<>();
+
+    private void initCards() {
+        cardSlots[0] = CardSlot1;
+        cardSlots[1] = CardSlot2;
+        cardSlots[2] = CardSlot3;
+        cardSlots[3] = CardSlot4;
+        cardSlots[4] = CardSlot5;
+        cardSlots[5] = CardSlot6;
+        cardSlots[6] = CardSlot7;
+        cardSlots[7] = CardSlot8;
+
+        //var listener = new DragMouseAdapter();
+        int i = 0;
+        int verticalLength = 7;
+        final int CARD_SLOTS = 8;
+        int iterator = 0;
+
+        for (int j = 0; j < CARD_SLOTS; j++) {
+            for (i = 0; i < verticalLength; i++) {
+                labels[iterator] = new DragLabel();
+                if (i == verticalLength - 1) {
+                    labels[iterator].valid = true;
+                } else {
+                    labels[iterator].valid = false;
+                }
+                
+                labels[iterator].value = i + 1;
+                labels[iterator].setCards(labels[iterator].value);
+                
+                //System.out.println("Test" + iterator);
+                labels[iterator].setBounds(cardSlots[j].getX(), cardSlots[j].getY() + (20 * i), 63, 84);
+
+                switch (j) {
+                    case 0 -> cardsInSlot1.add(labels[iterator]);
+                    case 1 -> cardsInSlot2.add(labels[iterator]);
+                    case 2 -> cardsInSlot3.add(labels[iterator]);
+                    case 3 -> cardsInSlot4.add(labels[iterator]);
+                    case 4 -> cardsInSlot5.add(labels[iterator]);
+                    case 5 -> cardsInSlot6.add(labels[iterator]);
+                    case 6 -> cardsInSlot7.add(labels[iterator]);
+                    case 7 -> cardsInSlot8.add(labels[iterator]);
+                }
+
+                jLayeredPane1.add(labels[iterator]);
+                iterator++;
+
+            }
+            if (j >= 2 && j < 3) {
+                verticalLength--;
+            }
+            //verticalLength++;
+        }
+
+        //verticalLength = 6;
+        layerCards(CARD_NUM);
+        
+        cardSlotsList.add(cardsInSlot1);
+        cardSlotsList.add(cardsInSlot2);
+        cardSlotsList.add(cardsInSlot3);
+        cardSlotsList.add(cardsInSlot4);
+        cardSlotsList.add(cardsInSlot5);
+        cardSlotsList.add(cardsInSlot6);
+        cardSlotsList.add(cardsInSlot7);
+        cardSlotsList.add(cardsInSlot8);
+
+        jLayeredPane1.revalidate();
+        jLayeredPane1.repaint();
+    }
+
+    private void layerCards(int cardNum) {
+        int m = 0;
+        for (int k = cardNum - 1; k >= 0; k--) {
+            System.out.println(k);
+            jLayeredPane1.setComponentZOrder(labels[m], k);
+            m++;
+        }
+        
+        jLayeredPane1.setComponentZOrder(CardSlot1, cardNum + 8);
+        jLayeredPane1.setComponentZOrder(CardSlot2, cardNum + 8);
+        jLayeredPane1.setComponentZOrder(CardSlot3, cardNum + 7);
+        jLayeredPane1.setComponentZOrder(CardSlot4, cardNum + 6);
+        jLayeredPane1.setComponentZOrder(CardSlot5, cardNum + 5);
+        jLayeredPane1.setComponentZOrder(CardSlot6, cardNum + 4);
+        jLayeredPane1.setComponentZOrder(CardSlot7, cardNum + 3);
+        jLayeredPane1.setComponentZOrder(CardSlot8, cardNum + 2);
+    }
+
+    public class DragLabel extends JLabel {
+
+        private BufferedImage img;
+        private final Point imgPoint = new Point(0, 0);
+        private Point oriPoint;
+        private Icon icon;
+        private final int X_DRAG_OFFSET = jLayeredPane1.getX() + 6;
+        private final int Y_DRAG_OFFSET = jLayeredPane1.getY() + 30;
+        private final Component component = this;
+        private int cardIndex = 0;
+        private int cardSlotIndex = -1;
+        private boolean valid = false; //faceUp?
+        private int value = 0;
+        //imagepath??
+
+        public DragLabel() {
+            MouseAdapter ma = new MouseAdapter() {
+                private Point xyDifference;
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    Rectangle bounds = getImageBounds();
+
+                    Point mp = e.getPoint();
+                    Point mousePoint = e.getLocationOnScreen();
+
+                    oriPoint = getLocation();
+                    //if cursor is over the card
+                    if (bounds.contains(mp)) {
+                        xyDifference = new Point();
+                        xyDifference.x = mp.x - bounds.x;
+                        xyDifference.y = mp.y - bounds.y;
+                        
+                        //if its over slot 8 and valid
+                        if (mouseOverCardSlotAndValid(mousePoint, CardSlot8)) {
+                            getCards(cardsInSlot8);
+                            cardSlotIndex = 7;
+                        //if its over slot 7 and valid and so on...
+                        } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot7)) {
+                            getCards(cardsInSlot7);
+                            cardSlotIndex = 6;
+                        } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot6)) {
+                            getCards(cardsInSlot6);
+                            cardSlotIndex = 5;
+                        } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot5)) {
+                            getCards(cardsInSlot5);
+                            cardSlotIndex = 4;
+                        } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot4)) {
+                            getCards(cardsInSlot4);
+                            cardSlotIndex = 3;
+                        } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot3)) {
+                            getCards(cardsInSlot3);
+                            cardSlotIndex = 2;
+                        } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot2)) {
+                            getCards(cardsInSlot2);
+                            cardSlotIndex = 1;
+                        } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot1)) {
+                            getCards(cardsInSlot1);
+                            cardSlotIndex = 0;
+                        }
+                        
+                    }
+                }
+
+                private boolean mouseOverCardSlotAndValid(Point mousePoint, JPanel cardSlot) {
+                    return mousePoint.getLocation().x > cardSlot.getLocation().x && mousePoint.getLocation().x <= cardSlot.getLocation().x + img.getWidth() && valid;
+                }
+                
+                private boolean cardOverCardSlot(JPanel cardSlot) {
+                    return getLocation().x + (img.getWidth() / 2) >= cardSlot.getLocation().x && getLocation().x + (img.getWidth() / 2) < cardSlot.getLocation().x + img.getWidth();
+                }
+
+                private void getCards(ArrayList<DragLabel> cardsInSlot) {
+                    for (DragLabel label : cardsInSlot) {
+                        if (label == component) {
+                            //This can be further refactored to .split()
+                            for (int i = cardIndex; i < cardsInSlot.size(); i++) {
+                                cardsDragged.add(cardsInSlot.get(i));
+                            }
+                            for (int i = cardsInSlot.size() - 1; i > cardIndex - 1; i--) {
+                                cardsInSlot.remove(i);
+                            }
+                            break;
+                        } else {
+                            cardIndex++;
+                        }
+                    }
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    xyDifference = null;
+                    
+                    //snaps the card to slot 1, clears the temp arraylist
+                    if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0) {
+                        snapCardsToCardSlot(CardSlot1, cardsInSlot1);
+                    } 
+                    else if (cardOverCardSlot(CardSlot2) && cardSlotIndex != 1) {
+                        snapCardsToCardSlot(CardSlot2, cardsInSlot2);
+                    }
+                    else if (cardOverCardSlot(CardSlot3) && cardSlotIndex != 2) {
+                        snapCardsToCardSlot(CardSlot3, cardsInSlot3);
+                    }
+                    else if (cardOverCardSlot(CardSlot4) && cardSlotIndex != 3) {
+                        snapCardsToCardSlot(CardSlot4, cardsInSlot4);
+                    }
+                    else if (cardOverCardSlot(CardSlot5) && cardSlotIndex != 4) {
+                        snapCardsToCardSlot(CardSlot5, cardsInSlot5);
+                    }
+                    else if (cardOverCardSlot(CardSlot6) && cardSlotIndex != 5) {
+                        snapCardsToCardSlot(CardSlot6, cardsInSlot6);
+                    }
+                    else if (cardOverCardSlot(CardSlot7) && cardSlotIndex != 6) {
+                        snapCardsToCardSlot(CardSlot7, cardsInSlot7);
+                    }
+                    else if (cardOverCardSlot(CardSlot8) && cardSlotIndex != 7) {
+                        snapCardsToCardSlot(CardSlot8, cardsInSlot8);
+                    }
+                    else {
+                        revertBackToPreviousCardSlot();
+                    }
+                    cardIndex = 0;
+
+                }
+
+                private void snapCardsToCardSlot(JPanel cardSlot, ArrayList<DragLabel> cardsInSlot) {
+                    int yOffset = 20;
+                    for (int i = 0; i < cardsDragged.size(); i++) {
+                        //sets the location
+                        jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
+                        cardsDragged.get(i).setLocation(cardSlot.getLocation().x, (cardSlot.getLocation().y + (yOffset * cardsInSlot.size())));
+                        cardsInSlot.add(cardsDragged.get(i));
+                    }
+                    
+                    if (cardIndex - 1 != -1) {
+                        cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).valid = true;
+                        cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).setCards(cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).value);
+                    }
+                    
+                    
+                    cardsDragged.clear();
+                }
+
+                private void revertBackToPreviousCardSlot() {
+                    int yOffset = 20;
+                    for (int i = 0; i < cardsDragged.size(); i++) {
+                        //sets the location
+                        jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
+                        cardsDragged.get(i).setLocation(oriPoint.x, (cardSlots[cardSlotIndex].getLocation().y + (yOffset * cardSlotsList.get(cardSlotIndex).size())));
+                        
+                        cardSlotsList.get(cardSlotIndex).add(cardsDragged.get(i));
+                    }
+                    
+                    cardsDragged.clear();
+                }
+
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    if (xyDifference != null) {
+                        Point mousePoint = e.getLocationOnScreen();
+                        //calculates how much to move the object
+                        Point movePoint = new Point(mousePoint.x - oriPoint.x - xyDifference.x - X_DRAG_OFFSET, mousePoint.y - oriPoint.y - xyDifference.y - Y_DRAG_OFFSET);
+
+                        int yOffset = 0;
+
+                        for (int i = 0; i < cardsDragged.size(); i++) {
+                            //sets the location
+                            jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
+                            cardsDragged.get(i).setLocation((oriPoint.x + movePoint.x), (oriPoint.y + movePoint.y + (yOffset * 20)));
+                            yOffset++;
+                        }
+
+                        revalidate();
+                        repaint();
+                    }
+                }
+            };
+            addMouseListener(ma);
+            addMouseMotionListener(ma);
+        }
+
+        protected Rectangle getImageBounds() {
+            icon = this.getIcon();
+            img = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_RGB);
+            Rectangle bounds = new Rectangle(0, 0, 0, 0);
+            if (img != null) {
+                bounds.setLocation(imgPoint);
+                bounds.setSize(img.getWidth(), img.getHeight());
+            }
+            return bounds;
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+        }
+        
+        protected void setCards(int value) {
+            if (!valid) {
+                setIcon(new ImageIcon(getClass().getResource("/solitaire/client/image/cardback.png")));
+            } else {
+                setIcon(new ImageIcon(getClass().getResource("/solitaire/client/image/card" + value + ".png")));
+            }
+        }
+    }
 }
