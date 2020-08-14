@@ -10,4 +10,6 @@ public interface StackInterface<T> {
     public T peek();
     public void clear();
     public int search(T entry);
+    public T get(int index);
+    public void set(int index, T entry);
 }

@@ -93,5 +93,22 @@ public class ArrayStack<T> implements StackInterface<T> {
             topIndex--;
         }
     }
+
+    @Override
+    public T get(int index) {
+        T data = null;
+        
+        if (!isEmpty() && index < array.length) {
+            data = array[index];
+        }
+        
+        return data;
+    }
     
+    @Override
+    public void set(int index, T entry) {
+        if (!isEmpty() && index < array.length) {
+            array[index] = entry;
+        }
+    }
 }
