@@ -1,17 +1,34 @@
 package solitaire.entity;
 
-import java.net.URL;
-
 public class Sound
 {
-    private URL soundSource;
+    private int soundNum;
+    private String soundSource;
+    
+    public Sound()
+    {
+        
+    }
+    public Sound(int soundNum, String soundSource)
+    {
+        this.soundNum = soundNum;
+        this.soundSource = soundSource;
+    }
 
-    public URL getSoundSource()
+    public int getSoundNum()
+    {
+        return soundNum;
+    }
+    public void setSoundNum(int soundNum)
+    {
+        this.soundNum = soundNum;
+    }  
+    
+    public String getSoundSource()
     {
         return soundSource;
     }
-
-    public void setSoundSource(URL soundSource)
+    public void setSoundSource(String soundSource)
     {
         this.soundSource = soundSource;
     }
@@ -86,6 +103,8 @@ import javax.sound.sampled.Clip;
         }
 
 https://www.youtube.com/watch?v=TErboGLHZGA
+
+https://www3.ntu.edu.sg/home/ehchua/programming/java/J8c_PlayingSound.html
 
     }
 */
