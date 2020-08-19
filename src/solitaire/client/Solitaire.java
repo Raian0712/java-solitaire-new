@@ -429,7 +429,7 @@ public class Solitaire extends javax.swing.JFrame {
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
         sound.add(new Sound(3,"Card_Put"));
         
-        //♬ BGM for the game
+        //♬ BGM for the game (Loop available)
         try
         {
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(this.getClass().getResource("sounds/BGM.wav"));
