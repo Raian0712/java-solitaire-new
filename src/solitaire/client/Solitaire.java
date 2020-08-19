@@ -5,6 +5,8 @@
  */
 package solitaire.client;
 
+import java.applet.Applet;
+import java.applet.AudioClip;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -12,9 +14,17 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
+import solitaire.adt.ArrList;
 import solitaire.entity.DrawDeck;
+import solitaire.entity.Sound;
 
 /**
  *
@@ -28,6 +38,7 @@ public class Solitaire extends javax.swing.JFrame {
     public Solitaire() {
         initComponents();
         initCards();
+        initializeAudio();
     }
 
     /**
@@ -331,7 +342,10 @@ public class Solitaire extends javax.swing.JFrame {
     ArrayList<DragLabel> cardsInSlot8 = new ArrayList<>();
     ArrayList<ArrayList<DragLabel>> cardSlotsList = new ArrayList<>();
     ArrayList<DragLabel> cardsDragged = new ArrayList<>();
-
+    
+    private ArrList<AudioClip> audioClips = new ArrList<AudioClip>();
+    private ArrList<Sound> sound = new ArrList<Sound>();
+    
     //Initializes the cards
     private void initCards() {
         cardSlots[0] = CardSlot1;
@@ -401,6 +415,37 @@ public class Solitaire extends javax.swing.JFrame {
         jLayeredPane1.repaint();
     }
 
+    private void initializeAudio()
+    {
+        String url;
+        
+        //♬ Sound Effect for Taking Card (Line 499)
+        url = "sounds/Card_Take.wav";
+        audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
+        sound.add(new Sound(2,"Card_Take"));
+        
+        //♬ Sound Effect for Putting Card (Line 560)
+        url = "sounds/Card_Put.wav";
+        audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
+        sound.add(new Sound(3,"Card_Put"));
+        
+        //♬ BGM for the game
+        try
+        {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(this.getClass().getResource("sounds/BGM.wav"));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            System.out.println("BGM started");
+        }
+        catch(Exception exception)
+        {
+            System.out.println("Cannot play the Music");
+        }  
+        sound.add(new Sound(1,"BGM"));
+    }
+    
     private void layerCards(int cardNum) {
         int m = 0;
         for (int k = cardNum - 1; k >= 0; k--) {
@@ -433,7 +478,7 @@ public class Solitaire extends javax.swing.JFrame {
         private boolean valid = false; //faceUp?
         private int value = 0;
         //imagepath??
-
+        
         public DragLabel() {
             MouseAdapter ma = new MouseAdapter() {
                 private Point xyDifference;
@@ -451,6 +496,7 @@ public class Solitaire extends javax.swing.JFrame {
                         xyDifference = new Point();
                         xyDifference.x = mp.x - bounds.x;
                         xyDifference.y = mp.y - bounds.y;
+                        audioClips.getEntry(1).play();
                         
                         //if its over slot 8 and valid
                         if (mouseOverCardSlotAndValid(mousePoint, CardSlot8)) {
@@ -511,6 +557,7 @@ public class Solitaire extends javax.swing.JFrame {
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     xyDifference = null;
+                    audioClips.getEntry(2).play();
                     
                     //snaps the card to slot 1, clears the temp arraylist
                     if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0) {

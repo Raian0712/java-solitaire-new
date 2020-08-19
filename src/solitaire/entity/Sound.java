@@ -3,16 +3,16 @@ package solitaire.entity;
 public class Sound
 {
     private int soundNum;
-    private String soundSource;
+    private String soundName;
     
     public Sound()
     {
         
     }
-    public Sound(int soundNum, String soundSource)
+    public Sound(int soundNum, String soundName)
     {
         this.soundNum = soundNum;
-        this.soundSource = soundSource;
+        this.soundName = soundName;
     }
 
     public int getSoundNum()
@@ -24,13 +24,13 @@ public class Sound
         this.soundNum = soundNum;
     }  
     
-    public String getSoundSource()
+    public String getSoundName()
     {
-        return soundSource;
+        return soundName;
     }
-    public void setSoundSource(String soundSource)
+    public void setSoundName(String soundName)
     {
-        this.soundSource = soundSource;
+        this.soundName = soundName;
     }
     
 }
