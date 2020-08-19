@@ -332,6 +332,7 @@ public class Solitaire extends javax.swing.JFrame {
     ArrayList<ArrayList<DragLabel>> cardSlotsList = new ArrayList<>();
     ArrayList<DragLabel> cardsDragged = new ArrayList<>();
 
+    //Initializes the cards
     private void initCards() {
         cardSlots[0] = CardSlot1;
         cardSlots[1] = CardSlot2;
