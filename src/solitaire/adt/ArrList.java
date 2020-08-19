@@ -17,6 +17,7 @@ public class ArrList<T> implements ListInterface<T>
     array = (T[]) new Object[initialCapacity];
   }
 
+  @Override
   public boolean add(T newEntry)
   {
     array[length] = newEntry;
@@ -24,6 +25,7 @@ public class ArrList<T> implements ListInterface<T>
     return true;
   }
 
+  @Override
   public boolean add(int newPosition, T newEntry)
   {
     boolean isSuccessful = true;
@@ -44,6 +46,7 @@ public class ArrList<T> implements ListInterface<T>
     return isSuccessful;
   }
 
+  @Override
   public T remove(int givenPosition)
   {
     T result = null;
@@ -63,11 +66,13 @@ public class ArrList<T> implements ListInterface<T>
     return result;
   }
 
+  @Override
   public void clear()
   {
     length = 0;
   }
 
+  @Override
   public boolean replace(int givenPosition, T newEntry)
   {
     boolean isSuccessful = true;
@@ -84,6 +89,7 @@ public class ArrList<T> implements ListInterface<T>
     return isSuccessful;
   }
 
+  @Override
   public T getEntry(int givenPosition)
   {
     T result = null;
@@ -96,6 +102,7 @@ public class ArrList<T> implements ListInterface<T>
     return result;
   }
 
+  @Override
   public boolean contains(T anEntry)
   {
     boolean found = false;
@@ -109,21 +116,25 @@ public class ArrList<T> implements ListInterface<T>
     return found;
   }
 
+  @Override
   public int getLength()
   {
     return length;
   }
 
+  @Override
   public boolean isEmpty()
   {
     return length == 0;
   }
 
+  @Override
   public boolean isFull()
   {
     return false;
   }
 
+  @Override
   public String toString()
   {
     String outputStr = "";
