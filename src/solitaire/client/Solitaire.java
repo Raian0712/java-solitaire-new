@@ -37,6 +37,7 @@ public class Solitaire extends javax.swing.JFrame {
      */
     public Solitaire() {
         initComponents();
+        initUI();
         initCards();
         initializeAudio();
     }
@@ -50,6 +51,10 @@ public class Solitaire extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        menuScreen = new javax.swing.JPanel();
+        titleText = new javax.swing.JLabel();
+        newGameBtn = new javax.swing.JButton();
+        rankScreenBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         CardSlot1 = new javax.swing.JPanel();
@@ -63,6 +68,53 @@ public class Solitaire extends javax.swing.JFrame {
         DrawSlot = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        menuScreen.setBackground(new java.awt.Color(204, 204, 255));
+
+        titleText.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        titleText.setText("Spider Solitaire");
+
+        newGameBtn.setText("New Game");
+        newGameBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newGameBtnActionPerformed(evt);
+            }
+        });
+
+        rankScreenBtn.setText("Rankings");
+        rankScreenBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rankScreenBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout menuScreenLayout = new javax.swing.GroupLayout(menuScreen);
+        menuScreen.setLayout(menuScreenLayout);
+        menuScreenLayout.setHorizontalGroup(
+            menuScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuScreenLayout.createSequentialGroup()
+                .addGroup(menuScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuScreenLayout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(titleText))
+                    .addGroup(menuScreenLayout.createSequentialGroup()
+                        .addGap(240, 240, 240)
+                        .addGroup(menuScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(rankScreenBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(newGameBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+        menuScreenLayout.setVerticalGroup(
+            menuScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuScreenLayout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(titleText)
+                .addGap(63, 63, 63)
+                .addComponent(newGameBtn)
+                .addGap(32, 32, 32)
+                .addComponent(rankScreenBtn)
+                .addContainerGap(272, Short.MAX_VALUE))
+        );
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -260,16 +312,29 @@ public class Solitaire extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(menuScreen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(menuScreen, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rankScreenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankScreenBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rankScreenBtnActionPerformed
+
+    private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
+        menuScreen.setVisible(false);
+        jLayeredPane1.setVisible(true);
+    }//GEN-LAST:event_newGameBtnActionPerformed
 
     Point initialPoint = null;
     Point xyDifference = null;
@@ -321,6 +386,10 @@ public class Solitaire extends javax.swing.JFrame {
     public javax.swing.JPanel DrawSlot;
     public javax.swing.JLayeredPane jLayeredPane1;
     public javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel menuScreen;
+    public javax.swing.JButton newGameBtn;
+    public javax.swing.JButton rankScreenBtn;
+    public javax.swing.JLabel titleText;
     // End of variables declaration//GEN-END:variables
 
     
@@ -465,6 +534,11 @@ public class Solitaire extends javax.swing.JFrame {
         jLayeredPane1.setComponentZOrder(CardSlot6, cardNum + 4);
         jLayeredPane1.setComponentZOrder(CardSlot7, cardNum + 3);
         jLayeredPane1.setComponentZOrder(CardSlot8, cardNum + 2);
+    }
+
+    private void initUI() {
+        menuScreen.setVisible(true);
+        jLayeredPane1.setVisible(false);
     }
 
     public class DragLabel extends JLabel {
