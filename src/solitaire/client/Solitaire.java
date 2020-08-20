@@ -332,16 +332,16 @@ public class Solitaire extends javax.swing.JFrame {
     DrawDeck initialDeck = new DrawDeck();
 
     //Change to Slot class
-    ArrayList<DragLabel> cardsInSlot1 = new ArrayList<>();
-    ArrayList<DragLabel> cardsInSlot2 = new ArrayList<>();
-    ArrayList<DragLabel> cardsInSlot3 = new ArrayList<>();
-    ArrayList<DragLabel> cardsInSlot4 = new ArrayList<>();
-    ArrayList<DragLabel> cardsInSlot5 = new ArrayList<>();
-    ArrayList<DragLabel> cardsInSlot6 = new ArrayList<>();
-    ArrayList<DragLabel> cardsInSlot7 = new ArrayList<>();
-    ArrayList<DragLabel> cardsInSlot8 = new ArrayList<>();
-    ArrayList<ArrayList<DragLabel>> cardSlotsList = new ArrayList<>();
-    ArrayList<DragLabel> cardsDragged = new ArrayList<>();
+    ArrList<DragLabel> cardsInSlot1 = new ArrList<>();
+    ArrList<DragLabel> cardsInSlot2 = new ArrList<>();
+    ArrList<DragLabel> cardsInSlot3 = new ArrList<>();
+    ArrList<DragLabel> cardsInSlot4 = new ArrList<>();
+    ArrList<DragLabel> cardsInSlot5 = new ArrList<>();
+    ArrList<DragLabel> cardsInSlot6 = new ArrList<>();
+    ArrList<DragLabel> cardsInSlot7 = new ArrList<>();
+    ArrList<DragLabel> cardsInSlot8 = new ArrList<>();
+    ArrList<ArrList<DragLabel>> cardSlotsList = new ArrList<>();
+    ArrList<DragLabel> cardsDragged = new ArrList<>();
     
     private ArrList<AudioClip> audioClips = new ArrList<AudioClip>();
     private ArrList<Sound> sound = new ArrList<Sound>();
@@ -362,6 +362,9 @@ public class Solitaire extends javax.swing.JFrame {
         int verticalLength = 7;
         final int CARD_SLOTS = 8;
         int iterator = 0;
+        
+        initialDeck.initDeck();
+        initialDeck.shuffle();
 
         for (int j = 0; j < CARD_SLOTS; j++) {
             for (i = 0; i < verticalLength; i++) {
@@ -372,7 +375,7 @@ public class Solitaire extends javax.swing.JFrame {
                     labels[iterator].valid = false;
                 }
                 
-                labels[iterator].value = i + 1;
+                labels[iterator].value = initialDeck.getCards().pop().getNumber();
                 labels[iterator].setCards(labels[iterator].value);
                 
                 //System.out.println("Test" + iterator);
@@ -496,7 +499,7 @@ public class Solitaire extends javax.swing.JFrame {
                         xyDifference = new Point();
                         xyDifference.x = mp.x - bounds.x;
                         xyDifference.y = mp.y - bounds.y;
-                        audioClips.getEntry(1).play();
+                        audioClips.get(0).play();
                         
                         //if its over slot 8 and valid
                         if (mouseOverCardSlotAndValid(mousePoint, CardSlot8)) {
@@ -537,15 +540,17 @@ public class Solitaire extends javax.swing.JFrame {
                     return getLocation().x + (img.getWidth() / 2) >= cardSlot.getLocation().x && getLocation().x + (img.getWidth() / 2) < cardSlot.getLocation().x + img.getWidth();
                 }
 
-                private void getCards(ArrayList<DragLabel> cardsInSlot) {
-                    for (DragLabel label : cardsInSlot) {
+                private void getCards(ArrList<DragLabel> cardsInSlot) {
+                    for (int j = 0; j < cardsInSlot.getLength(); j++/*DragLabel label : cardsInSlot*/) {
+                        DragLabel label = cardsInSlot.get(j);
                         if (label == component) {
                             //This can be further refactored to .split()
-                            for (int i = cardIndex; i < cardsInSlot.size(); i++) {
+                            System.out.println("cardIndex = " + cardIndex + ", cardsInSlot.getLength() = " + cardsInSlot.getLength());
+                            for (int i = cardIndex; i < cardsInSlot.getLength(); i++) {
                                 cardsDragged.add(cardsInSlot.get(i));
                             }
-                            for (int i = cardsInSlot.size() - 1; i > cardIndex - 1; i--) {
-                                cardsInSlot.remove(i);
+                            for (int i = cardsInSlot.getLength() - 1; i > cardIndex - 1; i--) {
+                                cardsInSlot.remove(i + 1);
                             }
                             break;
                         } else {
@@ -557,7 +562,7 @@ public class Solitaire extends javax.swing.JFrame {
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     xyDifference = null;
-                    audioClips.getEntry(2).play();
+                    audioClips.get(1).play();
                     
                     //snaps the card to slot 1, clears the temp arraylist
                     if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0) {
@@ -591,12 +596,13 @@ public class Solitaire extends javax.swing.JFrame {
 
                 }
 
-                private void snapCardsToCardSlot(JPanel cardSlot, ArrayList<DragLabel> cardsInSlot) {
+                private void snapCardsToCardSlot(JPanel cardSlot, ArrList<DragLabel> cardsInSlot) {
                     int yOffset = 20;
-                    for (int i = 0; i < cardsDragged.size(); i++) {
+                    System.out.println("snap cards cardsDragged.getLength() = " + cardsDragged.getLength());
+                    for (int i = 0; i < cardsDragged.getLength(); i++) {
                         //sets the location
                         jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
-                        cardsDragged.get(i).setLocation(cardSlot.getLocation().x, (cardSlot.getLocation().y + (yOffset * cardsInSlot.size())));
+                        cardsDragged.get(i).setLocation(cardSlot.getLocation().x, (cardSlot.getLocation().y + (yOffset * cardsInSlot.getLength())));
                         cardsInSlot.add(cardsDragged.get(i));
                     }
                     
@@ -605,16 +611,15 @@ public class Solitaire extends javax.swing.JFrame {
                         cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).setCards(cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).value);
                     }
                     
-                    
                     cardsDragged.clear();
                 }
 
                 private void revertBackToPreviousCardSlot() {
                     int yOffset = 20;
-                    for (int i = 0; i < cardsDragged.size(); i++) {
+                    for (int i = 0; i < cardsDragged.getLength(); i++) {
                         //sets the location
                         jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
-                        cardsDragged.get(i).setLocation(oriPoint.x, (cardSlots[cardSlotIndex].getLocation().y + (yOffset * cardSlotsList.get(cardSlotIndex).size())));
+                        cardsDragged.get(i).setLocation(oriPoint.x, (cardSlots[cardSlotIndex].getLocation().y + (yOffset * cardSlotsList.get(cardSlotIndex).getLength())));
                         
                         cardSlotsList.get(cardSlotIndex).add(cardsDragged.get(i));
                     }
@@ -631,7 +636,7 @@ public class Solitaire extends javax.swing.JFrame {
 
                         int yOffset = 0;
 
-                        for (int i = 0; i < cardsDragged.size(); i++) {
+                        for (int i = 0; i < cardsDragged.getLength(); i++) {
                             //sets the location
                             jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
                             cardsDragged.get(i).setLocation((oriPoint.x + movePoint.x), (oriPoint.y + movePoint.y + (yOffset * 20)));

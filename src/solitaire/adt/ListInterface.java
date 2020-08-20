@@ -9,7 +9,7 @@ public interface ListInterface<T>
     public void clear();
     public boolean replace(int givenPosition, T newEntry);
     
-    public T getEntry(int givenPosition);
+    public T get(int index);
     public boolean contains(T anEntry);
     
     public int getLength();

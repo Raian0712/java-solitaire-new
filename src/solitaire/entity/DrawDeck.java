@@ -12,10 +12,15 @@ public class DrawDeck {
     }
     
     public void initDeck() {
-        for (int i = 0; i < 51; i++) {
+        for (int set = 0; set < 7; set++) {
+            for (int card = 1; card <= 13; card++) {
+                cards.push(new Cards(card));
+            }
+        }
+        /*for (int i = 0; i < 51; i++) {
             //cards.push(new Cards());
             //cards.push(i);
-        }
+        }*/
     }
     
     
@@ -23,9 +28,9 @@ public class DrawDeck {
     public void shuffle() {
         for (int i = cards.size() - 1; i > 0; i--) {
             int swapIndex = (int)((Math.random() * ((51 - 1) + 1)) + 1);
-            //int temp = cards.get(swapIndex); //change to cards later
-            //cards.set(swapIndex, cards.get(i));
-            //cards.set(i, temp);
+            Cards temp = cards.get(swapIndex); //change to cards later
+            cards.set(swapIndex, cards.get(i));
+            cards.set(i, temp);
         }
     }
     

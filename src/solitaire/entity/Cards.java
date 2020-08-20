@@ -3,23 +3,18 @@ package solitaire.entity;
 import java.util.Objects;
 
 public class Cards {
-    private String number;
-    private String suite;
+    private int number;
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
+    public Cards(int number) {
         this.number = number;
     }
 
-    public String getSuite() {
-        return suite;
+    public int getNumber() {
+        return number;
     }
 
-    public void setSuite(String suite) {
-        this.suite = suite;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     @Override
@@ -43,15 +38,12 @@ public class Cards {
         if (!Objects.equals(this.number, other.number)) {
             return false;
         }
-        if (!Objects.equals(this.suite, other.suite)) {
-            return false;
-        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Cards{" + "number=" + number + ", suite=" + suite + '}';
+        return "Cards{" + "number=" + number + '}';
     }
     
     

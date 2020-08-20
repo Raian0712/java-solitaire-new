@@ -4,7 +4,7 @@ public class ArrList<T> implements ListInterface<T>
 {
   private T[] array;
   private int length;
-  private static final int DEFAULT_CAPACITY = 10;
+  private static final int DEFAULT_CAPACITY = 20;
 
   public ArrList()
   {
@@ -88,15 +88,15 @@ public class ArrList<T> implements ListInterface<T>
 
     return isSuccessful;
   }
-
+  
   @Override
-  public T getEntry(int givenPosition)
+  public T get(int index)
   {
     T result = null;
 
-    if ((givenPosition >= 1) && (givenPosition <= length))
+    if ((index >= 0) && (index <= length - 1))
     {
-      result = array[givenPosition - 1];
+      result = array[index];
     }
 
     return result;
