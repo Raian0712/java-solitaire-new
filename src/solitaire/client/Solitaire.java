@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package solitaire.client;
 
 import java.applet.Applet;
@@ -468,7 +463,7 @@ public class Solitaire extends javax.swing.JFrame {
         cardSlots[5] = CardSlot6;
         cardSlots[6] = CardSlot7;
         cardSlots[7] = CardSlot8;
-
+        
         //var listener = new DragMouseAdapter();
         int i = 0;
         int verticalLength = 7;
