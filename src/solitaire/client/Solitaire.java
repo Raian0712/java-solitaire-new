@@ -423,12 +423,12 @@ public class Solitaire extends javax.swing.JFrame {
 
     
     //Change to Card class
-    private final static int CARD_NUM = 51;
+    private final static int CARD_NUM = 91;
     DragLabel labels[] = new DragLabel[CARD_NUM];
     JPanel cardSlots[] = new JPanel[8];
     
     Deck initialDeck = new Deck();
-
+    DrawDeck drawCards = new DrawDeck();
     //Change to Slot class
     ArrList<DragLabel> cardsInSlot1 = new ArrList<>();
     ArrList<DragLabel> cardsInSlot2 = new ArrList<>();
@@ -440,6 +440,7 @@ public class Solitaire extends javax.swing.JFrame {
     ArrList<DragLabel> cardsInSlot8 = new ArrList<>();
     ArrList<ArrList<DragLabel>> cardSlotsList = new ArrList<>();
     ArrList<DragLabel> cardsDragged = new ArrList<>();
+    ArrayQueue<DragLabel> drawCardSlot = new ArrayQueue<>();
     
     private ArrList<AudioClip> audioClips = new ArrList<AudioClip>();
     private ArrList<Sound> sound = new ArrList<Sound>();
@@ -493,6 +494,7 @@ public class Solitaire extends javax.swing.JFrame {
                     case 5 -> cardsInSlot6.add(labels[iterator]);
                     case 6 -> cardsInSlot7.add(labels[iterator]);
                     case 7 -> cardsInSlot8.add(labels[iterator]);
+       
                 }
 
                 jLayeredPane1.add(labels[iterator]);
@@ -507,11 +509,18 @@ public class Solitaire extends javax.swing.JFrame {
         
         //draw decks goes here
         //initial deck have 40 cards remaining
-        /*
-        drawdeck.initDeck(initialDeck)
-        drawslot init stuff idk
-        */
-
+        
+        drawCards.insertDeck(initialDeck);
+        for (int j = 0; j < 40; j++) {
+            
+            labels[iterator] = new DragLabel();
+            labels[iterator].setCards(labels[iterator].value);
+            labels[iterator].setBounds(DrawSlot.getX(), DrawSlot.getY(), 63, 84);
+            drawCardSlot.enQueue(labels[iterator]);
+            jLayeredPane1.add(labels[iterator]);
+            iterator++;
+        }
+        
         //verticalLength = 6;
         layerCards(CARD_NUM);
         
@@ -637,6 +646,9 @@ public class Solitaire extends javax.swing.JFrame {
                         audioClips.get(0).play();
                         
                         //if its over slot 8 and valid
+                        if (mouseOverDrawCard(mousePoint)) {
+                            distCards();
+                        }
                         if (mouseOverCardSlotAndValid(mousePoint, CardSlot8)) {
                             getCards(cardsInSlot8);
                             cardSlotIndex = 7;
@@ -663,12 +675,16 @@ public class Solitaire extends javax.swing.JFrame {
                             getCards(cardsInSlot1);
                             cardSlotIndex = 0;
                         }
-                        
                     }
                 }
 
                 private boolean mouseOverCardSlotAndValid(Point mousePoint, JPanel cardSlot) {
                     return mousePoint.getLocation().x > cardSlot.getLocation().x && mousePoint.getLocation().x <= cardSlot.getLocation().x + img.getWidth() && valid;
+                }
+                
+                private boolean mouseOverDrawCard(Point mousePoint){
+                    return mousePoint.getLocation().x > DrawSlot.getLocation().x && mousePoint.getLocation().y > DrawSlot.getLocation().y &&
+                            mousePoint.getLocation().x <= DrawSlot.getLocation().x + img.getWidth() && mousePoint.getLocation().y <= DrawSlot.getLocation().y + img.getHeight();
                 }
                 
                 private boolean cardOverCardSlot(JPanel cardSlot) {
@@ -691,6 +707,14 @@ public class Solitaire extends javax.swing.JFrame {
                         } else {
                             cardIndex++;
                         }
+                    }
+                }
+                
+                private void distCards(){
+                    for (int i = 0; i < 8; i++) {
+                        cardSlotsList.get(i).add(drawCardSlot.deQueue());
+                        
+                        System.out.println("drawCard");
                     }
                 }
 

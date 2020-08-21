@@ -8,31 +8,24 @@ package solitaire.entity;
 import solitaire.adt.ArrayQueue;
 import solitaire.adt.QueueInterface;
 
-public class DrawDeckQueue {
+public class DrawDeck {
     private QueueInterface<Cards> cards = new ArrayQueue<>();
     
     public QueueInterface<Cards> getCards(){
         return cards;
     }
     
-    //
     
-     public void initDeck(Deck deck) {
-        //for each cards in deck
-        //cards.enqueue(deck.getcards.pop());
-        /*for (int set = 0; set < 7; set++) {
-            for (int card = 1; card <= 13; card++) {
-                cards.enQueue(new Cards(card));
-            }
-        }*/
+    
+    public void insertDeck(Deck deck) {
+         for (int i = 0; i < deck.getCards().size(); i++) {
+             cards.enQueue(deck.getCards().pop());
+         }
     }
-     
-//    public void shuffle() {
-//        for (; !cards.isEmpty();) {
-//            int swapIndex = (int)((Math.random() * ((51 - 1) + 1)) + 1);
-//            Cards temp 
-//        }
-//    }
+    
+    public void takeDeck(){
+            cards.deQueue();
+    }
      
      public void displayAll() {
         for (; !cards.isEmpty();) {
@@ -41,10 +34,10 @@ public class DrawDeckQueue {
     }
      
       public static void main(String[] args) {
-        Deck dd = new Deck();
+        DrawDeck dd = new DrawDeck();
         
-        dd.initDeck();
-        //dd.shuffle();
-        //dd.displayAll();
+        
+        //dd.initDeck(Deck);
+        //dd.displayAll(); 
     }
 }

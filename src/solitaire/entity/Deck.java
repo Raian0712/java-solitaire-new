@@ -25,10 +25,11 @@ public class Deck {
     
     public void shuffle() {
         for (int i = cards.size() - 1; i > 0; i--) {
-            int swapIndex = (int)((Math.random() * ((51 - 1) + 1)) + 1);
+            int swapIndex = (int)((Math.random() * ((91 - 1) + 1)) + 1);
             Cards temp = cards.get(swapIndex); //change to cards later
             cards.set(swapIndex, cards.get(i));
             cards.set(i, temp);
         }
     }
+    
 }
