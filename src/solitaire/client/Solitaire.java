@@ -569,7 +569,7 @@ public class Solitaire extends javax.swing.JFrame {
             m++;
         }
         
-        jLayeredPane1.setComponentZOrder(CardSlot1, cardNum + 8);
+        jLayeredPane1.setComponentZOrder(CardSlot1, cardNum + 9);
         jLayeredPane1.setComponentZOrder(CardSlot2, cardNum + 8);
         jLayeredPane1.setComponentZOrder(CardSlot3, cardNum + 7);
         jLayeredPane1.setComponentZOrder(CardSlot4, cardNum + 6);
