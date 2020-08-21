@@ -345,13 +345,13 @@ public class Solitaire extends javax.swing.JFrame {
 
     private void rankScreenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankScreenBtnActionPerformed
 
-       if(condition == 1){
+       if(ranking_display == 1){
         highScore.setVisible(true);
-        condition --;
+        ranking_display --;
        }
        else{
         highScore.setVisible(false);
-         condition ++;
+         ranking_display ++;
        }
     }//GEN-LAST:event_rankScreenBtnActionPerformed
 
@@ -443,10 +443,12 @@ public class Solitaire extends javax.swing.JFrame {
     
     private ArrList<AudioClip> audioClips = new ArrList<AudioClip>();
     private ArrList<Sound> sound = new ArrList<Sound>();
+    
     private SortedListInterface<Player> player = new SortedLinkedList<>();
     int score = 1000;
     int move = 0;
-    int condition=1;
+    int ranking_display = 1;
+    
     //Initializes the cards
     private void initCards() {
         cardSlots[0] = CardSlot1;
@@ -530,31 +532,28 @@ public class Solitaire extends javax.swing.JFrame {
     {
         String url;
         
-        //♬ Sound Effect for Taking Card (Line 499)
+        //♬ Sound Effect for Taking Card (Line 637)
         url = "sounds/Card_Take.wav";
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
-        sound.add(new Sound(2,"Card_Take"));
+        sound.add(new Sound(1,"Card_Take"));
         
-        //♬ Sound Effect for Putting Card (Line 560)
+        //♬ Sound Effect for Putting Card (Line 700)
         url = "sounds/Card_Put.wav";
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
-        sound.add(new Sound(3,"Card_Put"));
+        sound.add(new Sound(2,"Card_Put"));
         
         //♬ BGM for the game (Loop available)
-        try
-        {
-            AudioInputStream audioIn = AudioSystem.getAudioInputStream(this.getClass().getResource("sounds/BGM.wav"));
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioIn);
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-            System.out.println("BGM started");
-        }
-        catch(Exception exception)
-        {
-            System.out.println("Cannot play the Music");
-        }  
-        sound.add(new Sound(1,"BGM"));
+            try {
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(this.getClass().getResource("sounds/BGM.wav"));
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioIn);
+                clip.start();
+                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                System.out.println("BGM started");
+            } catch (Exception exception) {
+                System.out.println("Cannot play the BGM");
+            }
+            sound.add(3, new Sound(3, "BGM"));
     }
     
     private void layerCards(int cardNum) {
@@ -582,9 +581,9 @@ public class Solitaire extends javax.swing.JFrame {
     }
     
     private void initializeList(){
-    player.add(new Player(500,50,"Kenny"));
-    player.add(new Player(450,55,"Tiger"));
-    player.add(new Player(330,45,"Lion"));
+    player.add(new Player(500,135,"Kenny"));
+    player.add(new Player(450,140,"Tiger"));
+    player.add(new Player(330,152,"Lion"));
     }
 
     private String formatHighScore() {
@@ -702,6 +701,7 @@ public class Solitaire extends javax.swing.JFrame {
                     move++;
                     score -= 10;
                     ScoreAndMove.setText("Move :" + move + " " + "Score :" + score);
+                    
                     //snaps the card to slot 1, clears the temp arraylist
                     if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0) {
                         snapCardsToCardSlot(CardSlot1, cardsInSlot1);
