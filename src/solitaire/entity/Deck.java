@@ -3,7 +3,7 @@ package solitaire.entity;
 import solitaire.adt.ArrayStack;
 import solitaire.adt.StackInterface;
 
-public class DrawDeck {
+public class Deck {
     private StackInterface<Cards> cards = new ArrayStack<>();
     //private StackInterface<Integer> cards = new ArrayStack<>();
 
@@ -23,8 +23,6 @@ public class DrawDeck {
         }*/
     }
     
-    
-    
     public void shuffle() {
         for (int i = cards.size() - 1; i > 0; i--) {
             int swapIndex = (int)((Math.random() * ((51 - 1) + 1)) + 1);
@@ -33,18 +31,4 @@ public class DrawDeck {
             cards.set(i, temp);
         }
     }
-    
-    /*public void displayAll() {
-        for (int i = 0; i < cards.size(); i++) {
-            System.out.println(cards.get(i));
-        }
-    }*/
-    
-    /*public static void main(String[] args) {
-        DrawDeck dd = new DrawDeck();
-        
-        dd.initDeck();
-        dd.shuffle();
-        dd.displayAll();
-    }*/
 }

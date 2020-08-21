@@ -9,19 +9,13 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 import solitaire.adt.*;
-import solitaire.entity.DrawDeck;
-import solitaire.entity.Player;
-import solitaire.entity.Sound;
+import solitaire.entity.*;
 
 /**
  *
@@ -433,7 +427,7 @@ public class Solitaire extends javax.swing.JFrame {
     DragLabel labels[] = new DragLabel[CARD_NUM];
     JPanel cardSlots[] = new JPanel[8];
     
-    DrawDeck initialDeck = new DrawDeck();
+    Deck initialDeck = new Deck();
 
     //Change to Slot class
     ArrList<DragLabel> cardsInSlot1 = new ArrList<>();
@@ -508,6 +502,13 @@ public class Solitaire extends javax.swing.JFrame {
             }
             //verticalLength++;
         }
+        
+        //draw decks goes here
+        //initial deck have 40 cards remaining
+        /*
+        drawdeck.initDeck(initialDeck)
+        drawslot init stuff idk
+        */
 
         //verticalLength = 6;
         layerCards(CARD_NUM);
@@ -744,6 +745,7 @@ public class Solitaire extends javax.swing.JFrame {
                     }
                     
                     if (cardIndex - 1 != -1) {
+                        //if linked list i think can just change the .get(cardIndex - 1)
                         cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).valid = true;
                         cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).setCards(cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).value);
                     }

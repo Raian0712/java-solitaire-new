@@ -15,12 +15,16 @@ public class DrawDeckQueue {
         return cards;
     }
     
-     public void initDeck() {
-        for (int set = 0; set < 7; set++) {
+    //
+    
+     public void initDeck(Deck deck) {
+        //for each cards in deck
+        //cards.enqueue(deck.getcards.pop());
+        /*for (int set = 0; set < 7; set++) {
             for (int card = 1; card <= 13; card++) {
                 cards.enQueue(new Cards(card));
             }
-        }
+        }*/
     }
      
 //    public void shuffle() {
@@ -37,10 +41,10 @@ public class DrawDeckQueue {
     }
      
       public static void main(String[] args) {
-        DrawDeck dd = new DrawDeck();
+        Deck dd = new Deck();
         
         dd.initDeck();
         //dd.shuffle();
-        dd.displayAll();
+        //dd.displayAll();
     }
 }
