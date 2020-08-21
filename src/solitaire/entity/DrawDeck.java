@@ -9,34 +9,33 @@ import solitaire.adt.ArrayQueue;
 import solitaire.adt.QueueInterface;
 
 public class DrawDeck {
+
     private QueueInterface<Cards> cards = new ArrayQueue<>();
-    
-    public QueueInterface<Cards> getCards(){
+
+    public QueueInterface<Cards> getCards() {
         return cards;
     }
-    
-    
-    
+
     public void insertDeck(Deck deck) {
-         for (int i = 0; i < deck.getCards().size(); i++) {
-             cards.enQueue(deck.getCards().pop());
-         }
+        int length = deck.getCards().size();
+        for (int i = 0; i < length; i++) {
+            cards.enQueue(deck.getCards().pop());
+        }
     }
-    
-    public void takeDeck(){
-            cards.deQueue();
+
+    public void takeDeck() {
+        cards.deQueue();
     }
-     
-     public void displayAll() {
+
+    public void displayAll() {
         for (; !cards.isEmpty();) {
             System.out.println(cards.deQueue());
         }
     }
-     
-      public static void main(String[] args) {
+
+    public static void main(String[] args) {
         DrawDeck dd = new DrawDeck();
-        
-        
+
         //dd.initDeck(Deck);
         //dd.displayAll(); 
     }

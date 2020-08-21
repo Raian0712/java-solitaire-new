@@ -48,7 +48,7 @@ public class ArrayQueue<T> implements QueueInterface<T> {
 
     @Override
     public boolean isEmpty() {
-        return frontIndex >= backIndex;
+        return frontIndex > backIndex;
     }
 
     @Override
