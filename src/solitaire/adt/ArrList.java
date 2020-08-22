@@ -4,7 +4,7 @@ public class ArrList<T> implements ListInterface<T>
 {
   private T[] array;
   private int length;
-  private static final int DEFAULT_CAPACITY = 20;
+  private static final int DEFAULT_CAPACITY = 40;
 
   public ArrList()
   {
