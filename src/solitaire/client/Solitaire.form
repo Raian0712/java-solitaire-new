@@ -191,9 +191,9 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="CardSlot1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="CardSlot2" min="-2" max="-2" attributes="0"/>
@@ -207,13 +207,13 @@
                                       <Component id="CardSlot6" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="CardSlot7" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                      <Component id="WinSlot" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="DrawSlot" min="-2" max="-2" attributes="0"/>
                                   <Component id="CardSlot8" min="-2" max="-2" attributes="0"/>
@@ -232,29 +232,23 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="ScoreAndMove" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="CardSlot2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CardSlot1" min="-2" pref="84" max="-2" attributes="0"/>
-                                  <Component id="CardSlot8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CardSlot7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CardSlot6" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CardSlot5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CardSlot4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="CardSlot3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="305" max="32767" attributes="0"/>
-                              <Component id="DrawSlot" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="CardSlot2" min="-2" max="-2" attributes="0"/>
+                          <Component id="CardSlot1" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Component id="CardSlot8" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="CardSlot7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="CardSlot6" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="CardSlot5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="CardSlot4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="CardSlot3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="305" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="DrawSlot" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="WinSlot" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -451,17 +445,22 @@
                 <Property name="text" type="java.lang.String" value="Move: 0 Score: 1000"/>
               </Properties>
             </Component>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="WinSlot">
+              <Properties>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[63, 84]"/>
+                </Property>
+              </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="63" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="84" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>

@@ -63,6 +63,7 @@ public class Solitaire extends javax.swing.JFrame {
         CardSlot8 = new javax.swing.JPanel();
         DrawSlot = new javax.swing.JPanel();
         ScoreAndMove = new java.awt.Label();
+        WinSlot = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -250,6 +251,19 @@ public class Solitaire extends javax.swing.JFrame {
         ScoreAndMove.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         ScoreAndMove.setText("Move: 0 Score: 1000");
 
+        WinSlot.setPreferredSize(new java.awt.Dimension(63, 84));
+
+        javax.swing.GroupLayout WinSlotLayout = new javax.swing.GroupLayout(WinSlot);
+        WinSlot.setLayout(WinSlotLayout);
+        WinSlotLayout.setHorizontalGroup(
+            WinSlotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 63, Short.MAX_VALUE)
+        );
+        WinSlotLayout.setVerticalGroup(
+            WinSlotLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 84, Short.MAX_VALUE)
+        );
+
         jLayeredPane1.setLayer(CardSlot1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(CardSlot2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(CardSlot3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -260,6 +274,7 @@ public class Solitaire extends javax.swing.JFrame {
         jLayeredPane1.setLayer(CardSlot8, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(DrawSlot, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(ScoreAndMove, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(WinSlot, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -268,20 +283,25 @@ public class Solitaire extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(CardSlot1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CardSlot2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CardSlot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CardSlot4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CardSlot5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CardSlot6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CardSlot7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(CardSlot1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CardSlot2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CardSlot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CardSlot4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CardSlot5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CardSlot6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CardSlot7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(WinSlot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(DrawSlot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -306,7 +326,9 @@ public class Solitaire extends javax.swing.JFrame {
                     .addComponent(CardSlot4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CardSlot3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 305, Short.MAX_VALUE)
-                .addComponent(DrawSlot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DrawSlot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(WinSlot, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39))
         );
 
@@ -409,6 +431,7 @@ public class Solitaire extends javax.swing.JFrame {
     public javax.swing.JPanel CardSlot8;
     public javax.swing.JPanel DrawSlot;
     public java.awt.Label ScoreAndMove;
+    public javax.swing.JPanel WinSlot;
     public javax.swing.JTextArea highScore;
     public javax.swing.JLayeredPane jLayeredPane1;
     public javax.swing.JPanel jPanel1;
@@ -427,7 +450,7 @@ public class Solitaire extends javax.swing.JFrame {
 
     Deck initialDeck = new Deck();
     DrawDeck drawCards = new DrawDeck();
-    //Change to Slot class
+    //Change to linked list
     ArrList<DragLabel> cardsInSlot1 = new ArrList<>();
     ArrList<DragLabel> cardsInSlot2 = new ArrList<>();
     ArrList<DragLabel> cardsInSlot3 = new ArrList<>();
@@ -466,7 +489,7 @@ public class Solitaire extends javax.swing.JFrame {
         int iterator = 0;
 
         initialDeck.initDeck();
-        initialDeck.shuffle();
+        //initialDeck.shuffle();
 
         for (int j = 0; j < CARD_SLOTS; j++) {
             for (i = 0; i < verticalLength; i++) {
@@ -518,8 +541,6 @@ public class Solitaire extends javax.swing.JFrame {
         drawCards.insertDeck(initialDeck);
         for (int j = 0; j < 40; j++) {
             labels[iterator] = new DragLabel();
-            System.out.println(drawCards.getCards().getFront() + ", j = " + j);
-            //labels[iterator].valid = true;
             labels[iterator].value = drawCards.getCards().deQueue().getNumber();
             labels[iterator].setCards(labels[iterator].value);
             labels[iterator].setBounds(DrawSlot.getX(), DrawSlot.getY(), 63, 84);
@@ -579,14 +600,14 @@ public class Solitaire extends javax.swing.JFrame {
             m++;
         }
 
-        jLayeredPane1.setComponentZOrder(CardSlot1, cardNum + 9);
-        jLayeredPane1.setComponentZOrder(CardSlot2, cardNum + 8);
-        jLayeredPane1.setComponentZOrder(CardSlot3, cardNum + 7);
-        jLayeredPane1.setComponentZOrder(CardSlot4, cardNum + 6);
-        jLayeredPane1.setComponentZOrder(CardSlot5, cardNum + 5);
-        jLayeredPane1.setComponentZOrder(CardSlot6, cardNum + 4);
-        jLayeredPane1.setComponentZOrder(CardSlot7, cardNum + 3);
-        jLayeredPane1.setComponentZOrder(CardSlot8, cardNum + 2);
+        jLayeredPane1.setComponentZOrder(CardSlot1, cardNum + 10);
+        jLayeredPane1.setComponentZOrder(CardSlot2, cardNum + 9);
+        jLayeredPane1.setComponentZOrder(CardSlot3, cardNum + 8);
+        jLayeredPane1.setComponentZOrder(CardSlot4, cardNum + 7);
+        jLayeredPane1.setComponentZOrder(CardSlot5, cardNum + 6);
+        jLayeredPane1.setComponentZOrder(CardSlot6, cardNum + 5);
+        jLayeredPane1.setComponentZOrder(CardSlot7, cardNum + 4);
+        jLayeredPane1.setComponentZOrder(CardSlot8, cardNum + 3);
     }
 
     private void initUI() {
@@ -629,7 +650,6 @@ public class Solitaire extends javax.swing.JFrame {
         private int cardSlotIndex = -1;
         private boolean valid = false; //faceUp?
         private int value = 0;
-        //imagepath??
 
         public DragLabel() {
             MouseAdapter ma = new MouseAdapter() {
@@ -735,7 +755,7 @@ public class Solitaire extends javax.swing.JFrame {
                     ScoreAndMove.setText("Move :" + move + " " + "Score :" + score);
 
                     //snaps the card to slot 1, clears the temp arraylist
-                    if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0) {
+                    if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0 && checkCard(cardsInSlot1)) {
                         snapCardsToCardSlot(CardSlot1, cardsInSlot1);
                     } else if (cardOverCardSlot(CardSlot2) && cardSlotIndex != 1) {
                         snapCardsToCardSlot(CardSlot2, cardsInSlot2);
@@ -756,7 +776,30 @@ public class Solitaire extends javax.swing.JFrame {
                     }
                     cardIndex = 0;
 
+                    //win condition
+                    //if(checkWinPiles(cardsInSlot1)) {
+                    //  pushToWinPiles(cardsInSlot1)
+                    //} repeat 8 times for other card slots
                 }
+                
+                //checkWinPiles(cardsInSlot1) {
+                //  get last card
+                //  get previous card x 13 (for-loop) {
+                //      if last card value == previous card value - 1:
+                //          valid = true
+                //      else:
+                //          valid = false
+                //      if valid = false:
+                //          return false
+                //  }
+                //  return true
+                
+                //pushToWinPiles(cardsInSlot) {
+                //  splitIndex = cardsInSlot1.length() - 13 (+- 1)
+                //  piles = cardsInSlot.split(splitIndex)
+                //  for each cards in piles:
+                //      card.setLocation(WinSlot.getX(), WinSlot.getY());
+                //}
 
                 private void snapCardsToCardSlot(JPanel cardSlot, ArrList<DragLabel> cardsInSlot) {
                     int yOffset = 20;
@@ -765,7 +808,7 @@ public class Solitaire extends javax.swing.JFrame {
                         //sets the location
                         jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
                         cardsDragged.get(i).setLocation(cardSlot.getLocation().x, (cardSlot.getLocation().y + (yOffset * cardsInSlot.getLength())));
-                        cardsInSlot.add(cardsDragged.get(i));
+                        cardsInSlot.add(cardsDragged.get(i)); //.join()
                     }
 
                     if (cardIndex - 1 != -1) {
@@ -809,6 +852,16 @@ public class Solitaire extends javax.swing.JFrame {
                         revalidate();
                         repaint();
                     }
+                }
+
+                //linked list
+                private boolean checkCard(ArrList<DragLabel> cardsInSlot) {
+                    //get the last card in <cardsInSlot>
+                    
+                    //get the first card in <cardsDragged>
+                    
+                    //check if first card's value is exactly last card's value - 1
+                    return true;
                 }
             };
             addMouseListener(ma);
