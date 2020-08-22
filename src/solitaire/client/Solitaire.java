@@ -489,7 +489,7 @@ public class Solitaire extends javax.swing.JFrame {
         int iterator = 0;
 
         initialDeck.initDeck();
-        //initialDeck.shuffle();
+        initialDeck.shuffle();
 
         for (int j = 0; j < CARD_SLOTS; j++) {
             for (i = 0; i < verticalLength; i++) {
