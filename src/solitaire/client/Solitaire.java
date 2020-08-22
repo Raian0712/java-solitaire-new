@@ -780,9 +780,35 @@ public class Solitaire extends javax.swing.JFrame {
                     //if(checkWinPiles(cardsInSlot1)) {
                     //  pushToWinPiles(cardsInSlot1)
                     //} repeat 8 times for other card slots
+                    
+                    if(checkWinPiles(cardsInSlot1)){
+                    pushToWinPiles(cardsInSlot1);
+                    }
+                    if(checkWinPiles(cardsInSlot2)){
+                    pushToWinPiles(cardsInSlot2);
+                    }
+                    if(checkWinPiles(cardsInSlot3)){
+                    pushToWinPiles(cardsInSlot3);
+                    }
+                    if(checkWinPiles(cardsInSlot4)){
+                    pushToWinPiles(cardsInSlot4);
+                    }
+                    if(checkWinPiles(cardsInSlot5)){
+                    pushToWinPiles(cardsInSlot5);
+                    }
+                    if(checkWinPiles(cardsInSlot6)){
+                    pushToWinPiles(cardsInSlot6);
+                    }
+                    if(checkWinPiles(cardsInSlot7)){
+                    pushToWinPiles(cardsInSlot7);
+                    }
+                    if(checkWinPiles(cardsInSlot8)){
+                    pushToWinPiles(cardsInSlot8);
+                    }
+
                 }
                 
-                //checkWinPiles(cardsInSlot1) {
+                //  checkWinPiles(cardsInSlot1) {
                 //  get last card
                 //  get previous card x 13 (for-loop) {
                 //      if last card value == previous card value - 1:
@@ -794,13 +820,39 @@ public class Solitaire extends javax.swing.JFrame {
                 //  }
                 //  return true
                 
+                public boolean checkWinPiles(ArrList<DragLabel> cardInSlot){
+                   
+                    for(int i = 0; i < 13; i++){
+                        
+                        if(cardInSlot.size()-1){
+                            valid = true;
+                        }
+                        else{
+                            valid = false;
+                        }
+                        
+                        if(valid == false){
+                        return false;
+                        }
+                    }
+                    return true;
+                }
+                
                 //pushToWinPiles(cardsInSlot) {
                 //  splitIndex = cardsInSlot1.length() - 13 (+- 1)
                 //  piles = cardsInSlot.split(splitIndex)
                 //  for each cards in piles:
                 //      card.setLocation(WinSlot.getX(), WinSlot.getY());
                 //}
-
+                
+                public void pushToWinPiles(ArrList<DragLabel> cardsInSlot){
+                splitIndex = cardsInSlot1.length() - 13 (+- 1)
+                piles = cardsInSlot.split(splitIndex)
+                for each cards in piles:
+                card.setLocation(WinSlot.getX(), WinSlot.getY());
+                
+                }
+                
                 private void snapCardsToCardSlot(JPanel cardSlot, ArrList<DragLabel> cardsInSlot) {
                     int yOffset = 20;
                     System.out.println("snap cards cardsDragged.getLength() = " + cardsDragged.getLength());
@@ -856,12 +908,15 @@ public class Solitaire extends javax.swing.JFrame {
 
                 //linked list
                 private boolean checkCard(ArrList<DragLabel> cardsInSlot) {
-                    //get the last card in <cardsInSlot>
+                    //get the last card in <cardInSlot1>
                     
                     //get the first card in <cardsDragged>
-                    
+                   
                     //check if first card's value is exactly last card's value - 1
-                    return true;
+                    
+                    DragLabel firstCardInDrag = cardsDragged.get(0);
+                    int lastCardInSlot = cardsInSlot.getLast();
+                    return lastCardInSlot - 1 == firstCardInDrag;
                 }
             };
             addMouseListener(ma);
