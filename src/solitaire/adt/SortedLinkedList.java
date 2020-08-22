@@ -16,8 +16,8 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedListInte
         Node newNode = new Node(newEntry);
 
         Node nodeBefore = null; 
-        Node currentNode = firstNode;   
-        while (currentNode != null && newEntry.compareTo(currentNode.data) > 0) {
+        Node currentNode = firstNode;
+        while (currentNode != null && newEntry.compareTo(currentNode.data) < 0) {
             nodeBefore = currentNode;
             currentNode = currentNode.next;
         }
