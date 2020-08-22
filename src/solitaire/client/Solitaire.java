@@ -822,9 +822,9 @@ public class Solitaire extends javax.swing.JFrame {
                 
                 public boolean checkWinPiles(ArrList<DragLabel> cardInSlot){
                    
-                    for(int i = 0; i < 13; i++){
+                    for(int i = 0; i < 12; i++){
                         
-                        if(cardInSlot.size()-1){
+                        if(cardInSlot.get(cardInSlot.size()-i) == cardInSlot.get(cardInSlot.size()-i-1)){
                             valid = true;
                         }
                         else{
@@ -914,8 +914,8 @@ public class Solitaire extends javax.swing.JFrame {
                    
                     //check if first card's value is exactly last card's value - 1
                     
-                    DragLabel firstCardInDrag = cardsDragged.get(0);
-                    int lastCardInSlot = cardsInSlot.getLast();
+                    int firstCardInDrag = cardsDragged.get(0);
+                    int lastCardInSlot = cardsInSlot.get(cardsInSlot.size()-1);
                     return lastCardInSlot - 1 == firstCardInDrag;
                 }
             };
