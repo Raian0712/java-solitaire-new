@@ -737,11 +737,12 @@ public class Solitaire extends javax.swing.JFrame {
 
                 private void distCards() {
                     for (int i = 0; i < 8; i++) {
+                        jLayeredPane1.setComponentZOrder(drawCardSlot.getFront(), 0);
                         cardSlotsList.get(i).add(drawCardSlot.deQueue());
                         cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).valid = true;
                         cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).setCards(cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).value);
                         cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).setLocation(cardSlots[i].getX(), cardSlots[i].getY() + (20 * (cardSlotsList.get(i).getLength() - 1)));
-                        
+
                     }
                     System.out.println("drawCard");
                 }
@@ -749,6 +750,7 @@ public class Solitaire extends javax.swing.JFrame {
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     xyDifference = null;
+                    Point mousePoint = e.getLocationOnScreen();
                     audioClips.get(1).play();
                     move++;
                     score -= 10;
@@ -757,19 +759,19 @@ public class Solitaire extends javax.swing.JFrame {
                     //snaps the card to slot 1, clears the temp arraylist
                     if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0 && checkCard(cardsInSlot1)) {
                         snapCardsToCardSlot(CardSlot1, cardsInSlot1);
-                    } else if (cardOverCardSlot(CardSlot2) && cardSlotIndex != 1) {
+                    } else if (cardOverCardSlot(CardSlot2) && cardSlotIndex != 1 && checkCard(cardsInSlot2)) {
                         snapCardsToCardSlot(CardSlot2, cardsInSlot2);
-                    } else if (cardOverCardSlot(CardSlot3) && cardSlotIndex != 2) {
+                    } else if (cardOverCardSlot(CardSlot3) && cardSlotIndex != 2 && checkCard(cardsInSlot3)) {
                         snapCardsToCardSlot(CardSlot3, cardsInSlot3);
-                    } else if (cardOverCardSlot(CardSlot4) && cardSlotIndex != 3) {
+                    } else if (cardOverCardSlot(CardSlot4) && cardSlotIndex != 3 && checkCard(cardsInSlot4)) {
                         snapCardsToCardSlot(CardSlot4, cardsInSlot4);
-                    } else if (cardOverCardSlot(CardSlot5) && cardSlotIndex != 4) {
+                    } else if (cardOverCardSlot(CardSlot5) && cardSlotIndex != 4 && checkCard(cardsInSlot5)) {
                         snapCardsToCardSlot(CardSlot5, cardsInSlot5);
-                    } else if (cardOverCardSlot(CardSlot6) && cardSlotIndex != 5) {
+                    } else if (cardOverCardSlot(CardSlot6) && cardSlotIndex != 5 && checkCard(cardsInSlot6)) {
                         snapCardsToCardSlot(CardSlot6, cardsInSlot6);
-                    } else if (cardOverCardSlot(CardSlot7) && cardSlotIndex != 6) {
+                    } else if (cardOverCardSlot(CardSlot7) && cardSlotIndex != 6 && checkCard(cardsInSlot7)) {
                         snapCardsToCardSlot(CardSlot7, cardsInSlot7);
-                    } else if (cardOverCardSlot(CardSlot8) && cardSlotIndex != 7) {
+                    } else if (cardOverCardSlot(CardSlot8) && cardSlotIndex != 7 && checkCard(cardsInSlot8)) {
                         snapCardsToCardSlot(CardSlot8, cardsInSlot8);
                     } else {
                         revertBackToPreviousCardSlot();
@@ -780,8 +782,7 @@ public class Solitaire extends javax.swing.JFrame {
                     //if(checkWinPiles(cardsInSlot1)) {
                     //  pushToWinPiles(cardsInSlot1)
                     //} repeat 8 times for other card slots
-                    
-                    if(checkWinPiles(cardsInSlot1)){
+                    /*if(checkWinPiles(cardsInSlot1)){
                     pushToWinPiles(cardsInSlot1);
                     }
                     if(checkWinPiles(cardsInSlot2)){
@@ -804,10 +805,9 @@ public class Solitaire extends javax.swing.JFrame {
                     }
                     if(checkWinPiles(cardsInSlot8)){
                     pushToWinPiles(cardsInSlot8);
-                    }
-
+                    }*/
                 }
-                
+
                 //  checkWinPiles(cardsInSlot1) {
                 //  get last card
                 //  get previous card x 13 (for-loop) {
@@ -819,40 +819,36 @@ public class Solitaire extends javax.swing.JFrame {
                 //          return false
                 //  }
                 //  return true
-                
-                public boolean checkWinPiles(ArrList<DragLabel> cardInSlot){
-                   
-                    for(int i = 0; i < 12; i++){
-                        
-                        if(cardInSlot.get(cardInSlot.size()-i) == cardInSlot.get(cardInSlot.size()-i-1)){
+                public boolean checkWinPiles(ArrList<DragLabel> cardInSlot) {
+
+                    for (int i = 0; i < 12; i++) {
+
+                        if (cardInSlot.get(cardInSlot.getLength() - i) == cardInSlot.get(cardInSlot.getLength() - (i - 1))) {
                             valid = true;
-                        }
-                        else{
+                        } else {
                             valid = false;
                         }
-                        
-                        if(valid == false){
-                        return false;
+
+                        if (valid == false) {
+                            return false;
                         }
                     }
                     return true;
                 }
-                
+
                 //pushToWinPiles(cardsInSlot) {
                 //  splitIndex = cardsInSlot1.length() - 13 (+- 1)
                 //  piles = cardsInSlot.split(splitIndex)
                 //  for each cards in piles:
                 //      card.setLocation(WinSlot.getX(), WinSlot.getY());
                 //}
-                
-                public void pushToWinPiles(ArrList<DragLabel> cardsInSlot){
+                /*public void pushToWinPiles(ArrList<DragLabel> cardsInSlot){
                 splitIndex = cardsInSlot1.length() - 13 (+- 1)
                 piles = cardsInSlot.split(splitIndex)
                 for each cards in piles:
                 card.setLocation(WinSlot.getX(), WinSlot.getY());
                 
-                }
-                
+                }*/
                 private void snapCardsToCardSlot(JPanel cardSlot, ArrList<DragLabel> cardsInSlot) {
                     int yOffset = 20;
                     System.out.println("snap cards cardsDragged.getLength() = " + cardsDragged.getLength());
@@ -909,14 +905,15 @@ public class Solitaire extends javax.swing.JFrame {
                 //linked list
                 private boolean checkCard(ArrList<DragLabel> cardsInSlot) {
                     //get the last card in <cardInSlot1>
-                    
+
                     //get the first card in <cardsDragged>
-                   
                     //check if first card's value is exactly last card's value - 1
-                    
-                    int firstCardInDrag = cardsDragged.get(0);
-                    int lastCardInSlot = cardsInSlot.get(cardsInSlot.size()-1);
-                    return lastCardInSlot - 1 == firstCardInDrag;
+                    if (!cardsDragged.isEmpty()) {
+                        DragLabel firstCardInDrag = cardsDragged.get(0);
+                        DragLabel lastCardInSlot = cardsInSlot.get(cardsInSlot.getLength() - 1);
+                        return lastCardInSlot.value - 1 == firstCardInDrag.value;
+                    }
+                    return false;
                 }
             };
             addMouseListener(ma);
