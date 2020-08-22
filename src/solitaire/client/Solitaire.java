@@ -782,7 +782,7 @@ public class Solitaire extends javax.swing.JFrame {
                     //if(checkWinPiles(cardsInSlot1)) {
                     //  pushToWinPiles(cardsInSlot1)
                     //} repeat 8 times for other card slots
-                    /*if(checkWinPiles(cardsInSlot1)){
+                    if(checkWinPiles(cardsInSlot1)){
                     pushToWinPiles(cardsInSlot1);
                     }
                     if(checkWinPiles(cardsInSlot2)){
@@ -805,7 +805,7 @@ public class Solitaire extends javax.swing.JFrame {
                     }
                     if(checkWinPiles(cardsInSlot8)){
                     pushToWinPiles(cardsInSlot8);
-                    }*/
+                    }
                 }
 
                 //  checkWinPiles(cardsInSlot1) {
@@ -842,13 +842,16 @@ public class Solitaire extends javax.swing.JFrame {
                 //  for each cards in piles:
                 //      card.setLocation(WinSlot.getX(), WinSlot.getY());
                 //}
-                /*public void pushToWinPiles(ArrList<DragLabel> cardsInSlot){
-                splitIndex = cardsInSlot1.length() - 13 (+- 1)
-                piles = cardsInSlot.split(splitIndex)
-                for each cards in piles:
-                card.setLocation(WinSlot.getX(), WinSlot.getY());
+                public void pushToWinPiles(ArrList<DragLabel> cardsInSlot){
+                DragLabel splitIndex = cardsInSlot.get(cardsInSlot.getLength() - 1 - 12);
+                ArrList<DragLabel> cardsInPiles = null;
+                for(int i =0; i< 13; i++){
+                 cardsInPiles.add(cardsInSlot.get(cardsInSlot.getLength()-1-i));
+                }
+                for(var cards:cardsInPiles)
+                cards.setLocation(WinSlot.getX(), WinSlot.getY());
                 
-                }*/
+                }
                 private void snapCardsToCardSlot(JPanel cardSlot, ArrList<DragLabel> cardsInSlot) {
                     int yOffset = 20;
                     System.out.println("snap cards cardsDragged.getLength() = " + cardsDragged.getLength());
