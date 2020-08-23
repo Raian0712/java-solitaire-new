@@ -477,7 +477,7 @@ public class Solitaire extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rankScreenBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rankScreenBtnActionPerformed
-
+        formatHighScore();
         if (ranking_display == 1) {
             highScore.setVisible(true);
             ranking_display--;
