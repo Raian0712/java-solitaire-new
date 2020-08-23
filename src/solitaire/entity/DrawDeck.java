@@ -26,17 +26,4 @@ public class DrawDeck {
     public void takeDeck() {
         cards.deQueue();
     }
-
-    public void displayAll() {
-        for (; !cards.isEmpty();) {
-            System.out.println(cards.deQueue());
-        }
-    }
-
-    public static void main(String[] args) {
-        DrawDeck dd = new DrawDeck();
-
-        //dd.initDeck(Deck);
-        //dd.displayAll(); 
-    }
 }

@@ -5,7 +5,6 @@ import solitaire.adt.StackInterface;
 
 public class Deck {
     private StackInterface<Cards> cards = new ArrayStack<>();
-    //private StackInterface<Integer> cards = new ArrayStack<>();
 
     public StackInterface<Cards> getCards() {
         return cards;
@@ -17,10 +16,6 @@ public class Deck {
                 cards.push(new Cards(card));
             }
         }
-        /*for (int i = 0; i < 51; i++) {
-            //cards.push(new Cards());
-            //cards.push(i);
-        }*/
     }
     
     public void shuffle() {
@@ -31,5 +26,4 @@ public class Deck {
             cards.set(i, temp);
         }
     }
-    
 }

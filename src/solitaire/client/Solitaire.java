@@ -594,7 +594,6 @@ public class Solitaire extends javax.swing.JFrame {
 
     Deck initialDeck = new Deck();
     DrawDeck drawCards = new DrawDeck();
-    //Change to linked list
     LinkedList<DragLabel> cardsInSlot1 = new LinkedList<>();
     LinkedList<DragLabel> cardsInSlot2 = new LinkedList<>();
     LinkedList<DragLabel> cardsInSlot3 = new LinkedList<>();
@@ -630,7 +629,6 @@ public class Solitaire extends javax.swing.JFrame {
         cardSlots[6] = CardSlot7;
         cardSlots[7] = CardSlot8;
 
-        //var listener = new DragMouseAdapter();
         int i = 0;
         int verticalLength = 7;
         final int CARD_SLOTS = 8;
@@ -651,7 +649,6 @@ public class Solitaire extends javax.swing.JFrame {
                 labels[iterator].value = initialDeck.getCards().pop().getNumber();
                 labels[iterator].setCards(labels[iterator].value);
 
-                //System.out.println("Test" + iterator);
                 labels[iterator].setBounds(cardSlots[j].getX(), cardSlots[j].getY() + (20 * i), 63, 84);
 
                 switch (j) {
@@ -681,7 +678,6 @@ public class Solitaire extends javax.swing.JFrame {
             if (j >= 2 && j < 3) {
                 verticalLength--;
             }
-            //verticalLength++;
         }
         
         //draw decks goes here
@@ -697,7 +693,6 @@ public class Solitaire extends javax.swing.JFrame {
             iterator++;
         }
 
-        //verticalLength = 6;
         layerCards(CARD_NUM);
 
         cardSlotsList.add(cardsInSlot1);
@@ -752,7 +747,6 @@ public class Solitaire extends javax.swing.JFrame {
             jLayeredPane1.setComponentZOrder(labels[m], k);
             m++;
         }
-        System.out.println("jlayaredpane1 have " + jLayeredPane1.getComponentCount());
         jLayeredPane1.setComponentZOrder(CardSlot1, cardNum + 10);
         jLayeredPane1.setComponentZOrder(CardSlot2, cardNum + 9);
         jLayeredPane1.setComponentZOrder(CardSlot3, cardNum + 8);
@@ -972,10 +966,9 @@ public class Solitaire extends javax.swing.JFrame {
                 }
 
                 private void getCards(LinkedList<DragLabel> cardsInSlot) {
-                    for (int j = 0; j < cardsInSlot.length(); j++/*DragLabel label : cardsInSlot*/) {
+                    for (int j = 0; j < cardsInSlot.length(); j++) {
                         DragLabel label = cardsInSlot.getEntry(j + 1);
                         if (label == component) {
-                            //This can be further refactored to .split()
                             cardsDragged = (LinkedList<DragLabel>)cardsInSlot.split(cardIndex + 1);
                             /*for (int i = cardIndex; i < cardsInSlot.length(); i++) {
                                 cardsDragged.add(cardsInSlot.getEntry(i + 1));
@@ -1064,17 +1057,6 @@ public class Solitaire extends javax.swing.JFrame {
                     }
                 }
 
-                //  checkWinPiles(cardsInSlot1) {
-                //  get last card
-                //  get previous card x 13 (for-loop) {
-                //      if last card value == previous card value - 1:
-                //          valid = true
-                //      else:
-                //          valid = false
-                //      if valid = false:
-                //          return false
-                //  }
-                //  return true
                 public boolean checkWinPiles(LinkedList<DragLabel> cardInSlot) {
                     if (cardInSlot.length() >= 13) {
                         for (int i = 0; i < 12; i++) {
@@ -1087,13 +1069,7 @@ public class Solitaire extends javax.swing.JFrame {
                     }
                     return false;
                 }
-
-                //pushToWinPiles(cardsInSlot) {
-                //  splitIndex = cardsInSlot1.length() - 13 (+- 1)
-                //  piles = cardsInSlot.split(splitIndex)
-                //  for each cards in piles:
-                //      card.setLocation(WinSlot.getX(), WinSlot.getY());
-                //}
+                
                 public void pushToWinPiles(LinkedList<DragLabel> cardsInSlot) {
                     int splitIndex = cardsInSlot.length() - 13;
                     //DragLabel splitIndex = cardsInSlot.get(cardsInSlot.getLength() - 1 - 12);
@@ -1188,7 +1164,6 @@ public class Solitaire extends javax.swing.JFrame {
                     }
                 }
 
-                //linked list
                 private boolean checkCard(LinkedList<DragLabel> cardsInSlot) {
                     if (!cardsDragged.isEmpty() && cardsInSlot.getEntry(cardsInSlot.length()) != null) {
                         DragLabel firstCardInDrag = cardsDragged.getEntry(1);
@@ -1215,10 +1190,9 @@ public class Solitaire extends javax.swing.JFrame {
 
                 private void revalidateCards() {
                     for (int i = 0; i < 8; i++) {
-                        if (cardSlotsList.get(i).length() != 0) {
+                        if (cardSlotsList.get(i).length() > 1) {
                             cardSlotsList.get(i).getEntry(cardSlotsList.get(i).length()).drawValid = true;
-                            for (int j = cardSlotsList.get(i).length(); j >= 1; j--) {
-                                //System.out.println("cardSlotsList.get(i).getEntry(j).value = " + cardSlotsList.get(i).getEntry(j).value);
+                            for (int j = cardSlotsList.get(i).length(); j >= 2; j--) {
                                 if (cardSlotsList.get(i).getEntry(j).value == cardSlotsList.get(i).getEntry(j - 1).value - 1) {
                                     cardSlotsList.get(i).getEntry(j).drawValid = true;
                                     cardSlotsList.get(i).getEntry(j - 1).drawValid = true;
