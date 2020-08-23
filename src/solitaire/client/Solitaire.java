@@ -1217,8 +1217,8 @@ public class Solitaire extends javax.swing.JFrame {
 
                 private void revalidateCards() {
                     for (int i = 0; i < 8; i++) {
-                        cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).drawValid = true;
                         if (cardSlotsList.get(i).getLength() != 0) {
+                            cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).drawValid = true;
                             for (int j = cardSlotsList.get(i).getLength() - 1; j >= 1; j--) {
                                 if (cardSlotsList.get(i).get(j).value == cardSlotsList.get(i).get(j - 1).value - 1) {
                                     cardSlotsList.get(i).get(j).drawValid = true;
