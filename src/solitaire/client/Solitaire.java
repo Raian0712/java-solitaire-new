@@ -585,6 +585,7 @@ public class Solitaire extends javax.swing.JFrame {
                 labels[iterator] = new DragLabel();
                 if (i == verticalLength - 1) {
                     labels[iterator].valid = true;
+                    labels[iterator].drawValid = true;
                 } else {
                     labels[iterator].valid = false;
                 }
@@ -832,7 +833,8 @@ public class Solitaire extends javax.swing.JFrame {
         private final Component component = this;
         private int cardIndex = 0;
         private int cardSlotIndex = -1;
-        private boolean valid = false; //faceUp?
+        private boolean valid = false;
+        private boolean drawValid = false;
         private int value = 0;
 
         public DragLabel() {
@@ -857,6 +859,7 @@ public class Solitaire extends javax.swing.JFrame {
                         //if its over slot 8 and valid
                         if (mouseOverDrawCard(mousePoint)) {
                             distCards();
+                            checkValidAfterDraw();
                         }
                         if (mouseOverCardSlotAndValid(mousePoint, CardSlot8)) {
                             getCards(cardsInSlot8);
@@ -888,7 +891,7 @@ public class Solitaire extends javax.swing.JFrame {
                 }
 
                 private boolean mouseOverCardSlotAndValid(Point mousePoint, JPanel cardSlot) {
-                    return mousePoint.getLocation().x > cardSlot.getLocation().x && mousePoint.getLocation().x <= cardSlot.getLocation().x + img.getWidth() && valid;
+                    return mousePoint.getLocation().x > cardSlot.getLocation().x && mousePoint.getLocation().x <= cardSlot.getLocation().x + img.getWidth() && valid && drawValid;
                 }
 
                 private boolean mouseOverDrawCard(Point mousePoint) {
@@ -924,6 +927,7 @@ public class Solitaire extends javax.swing.JFrame {
                         jLayeredPane1.setComponentZOrder(drawCardSlot.getFront(), 0);
                         cardSlotsList.get(i).add(drawCardSlot.deQueue());
                         cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).valid = true;
+                        cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).drawValid = true;
                         cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).setCards(cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).value);
                         cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).setLocation(cardSlots[i].getX(), cardSlots[i].getY() + (20 * (cardSlotsList.get(i).getLength() - 1)));
 
@@ -959,6 +963,8 @@ public class Solitaire extends javax.swing.JFrame {
                     } else {
                         revertBackToPreviousCardSlot();
                     }
+                    
+                    revalidateCards();
                     cardIndex = 0;
 
                     //win condition
@@ -1037,6 +1043,12 @@ public class Solitaire extends javax.swing.JFrame {
                     for (int i = 0; i < cardsInPiles.getLength(); i++) {
                         cardsInPiles.get(i).setLocation(WinSlot.getX() + (winPiles * 20), WinSlot.getY());
                     }
+                    
+                    if (cardsInSlot.getLength() >= 1) {
+                        cardsInSlot.get(cardsInSlot.getLength() - 1).valid = true;
+                        cardsInSlot.get(cardsInSlot.getLength() - 1).drawValid = true;
+                        cardsInSlot.get(cardsInSlot.getLength() - 1).setCards(cardsInSlot.get(cardsInSlot.getLength() - 1).value);
+                    }
 
                     winPiles++;
 
@@ -1061,6 +1073,7 @@ public class Solitaire extends javax.swing.JFrame {
                     if (cardIndex - 1 != -1) {
                         //if linked list i think can just change the .get(cardIndex - 1)
                         cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).valid = true;
+                        cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).drawValid = true;
                         cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).setCards(cardSlotsList.get(cardSlotIndex).get(cardIndex - 1).value);
                     }
 
@@ -1074,6 +1087,7 @@ public class Solitaire extends javax.swing.JFrame {
                         jLayeredPane1.setComponentZOrder(cardsDragged.get(i), 0);
                         cardsDragged.get(i).setLocation(oriPoint.x, (cardSlots[cardSlotIndex].getLocation().y + (yOffset * cardSlotsList.get(cardSlotIndex).getLength())));
                         cardsDragged.get(i).valid = true;
+                        cardsDragged.get(i).drawValid = true;
                         cardSlotsList.get(cardSlotIndex).add(cardsDragged.get(i));
                     }
 
@@ -1103,10 +1117,6 @@ public class Solitaire extends javax.swing.JFrame {
 
                 //linked list
                 private boolean checkCard(ArrList<DragLabel> cardsInSlot) {
-                    //get the last card in <cardInSlot1>
-
-                    //get the first card in <cardsDragged>
-                    //check if first card's value is exactly last card's value - 1
                     if (!cardsDragged.isEmpty() && cardsInSlot.get(cardsInSlot.getLength() - 1) != null) {
                         DragLabel firstCardInDrag = cardsDragged.get(0);
                         DragLabel lastCardInSlot = cardsInSlot.get(cardsInSlot.getLength() - 1);
@@ -1117,6 +1127,33 @@ public class Solitaire extends javax.swing.JFrame {
 
                 private boolean emptySlot(ArrList<DragLabel> cardsInSlot) {
                     return cardsInSlot.isEmpty();
+                }
+
+                private void checkValidAfterDraw() {
+                    for (int i = 0; i < 8; i++) {
+                        if (cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).value != cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 2).value - 1) {
+                            for (int j = cardSlotsList.get(i).getLength() - 1; j >= 1; j--) {
+                                cardSlotsList.get(i).get(j - 1).drawValid = false;
+                            }
+                        }
+                    }
+                    
+                }
+
+                private void revalidateCards() {
+                    for (int i = 0; i < 8; i++) {
+                        cardSlotsList.get(i).get(cardSlotsList.get(i).getLength() - 1).drawValid = true;
+                        if (cardSlotsList.get(i).getLength() != 0) {
+                            for (int j = cardSlotsList.get(i).getLength() - 1; j >= 1; j--) {
+                                if (cardSlotsList.get(i).get(j).value == cardSlotsList.get(i).get(j - 1).value - 1) {
+                                    cardSlotsList.get(i).get(j).drawValid = true;
+                                    cardSlotsList.get(i).get(j - 1).drawValid = true;
+                                } else {
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
             };
             addMouseListener(ma);
