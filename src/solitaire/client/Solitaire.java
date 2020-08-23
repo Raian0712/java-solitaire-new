@@ -51,6 +51,10 @@ public class Solitaire extends javax.swing.JFrame {
         rankScreenBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         highScore = new javax.swing.JTextArea();
+        jLabelYourName = new javax.swing.JLabel();
+        jtfName = new javax.swing.JTextField();
+        nameConfirmBtn = new javax.swing.JButton();
+        jLabelNameSet = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         CardSlot1 = new javax.swing.JPanel();
@@ -97,6 +101,25 @@ public class Solitaire extends javax.swing.JFrame {
         highScore.setRows(5);
         jScrollPane1.setViewportView(highScore);
 
+        jLabelYourName.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelYourName.setText("Your Name : ");
+
+        jtfName.setText("Player");
+        jtfName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNameActionPerformed(evt);
+            }
+        });
+
+        nameConfirmBtn.setText("Confirm");
+        nameConfirmBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameConfirmBtnActionPerformed(evt);
+            }
+        });
+
+        jLabelNameSet.setText("*Name Is Set");
+
         javax.swing.GroupLayout menuScreenLayout = new javax.swing.GroupLayout(menuScreen);
         menuScreen.setLayout(menuScreenLayout);
         menuScreenLayout.setHorizontalGroup(
@@ -112,8 +135,19 @@ public class Solitaire extends javax.swing.JFrame {
                         .addGap(128, 128, 128)
                         .addComponent(titleText))
                     .addGroup(menuScreenLayout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(172, 172, 172)
+                        .addGroup(menuScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(menuScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                                .addGroup(menuScreenLayout.createSequentialGroup()
+                                    .addComponent(jLabelYourName)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jtfName)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(nameConfirmBtn)))
+                            .addGroup(menuScreenLayout.createSequentialGroup()
+                                .addGap(78, 78, 78)
+                                .addComponent(jLabelNameSet, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(152, Short.MAX_VALUE))
         );
         menuScreenLayout.setVerticalGroup(
@@ -125,9 +159,16 @@ public class Solitaire extends javax.swing.JFrame {
                 .addComponent(newGameBtn)
                 .addGap(32, 32, 32)
                 .addComponent(rankScreenBtn)
-                .addGap(43, 43, 43)
+                .addGap(38, 38, 38)
+                .addGroup(menuScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelYourName)
+                    .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameConfirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelNameSet)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(41, 41, 41))
         );
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
@@ -397,7 +438,7 @@ public class Solitaire extends javax.swing.JFrame {
                 .addComponent(titleText1)
                 .addGap(64, 64, 64)
                 .addComponent(newGameWinBtn)
-                .addContainerGap(335, Short.MAX_VALUE))
+                .addContainerGap(336, Short.MAX_VALUE))
             .addGroup(winScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(winScreenLayout.createSequentialGroup()
                     .addGap(260, 260, 260)
@@ -448,8 +489,9 @@ public class Solitaire extends javax.swing.JFrame {
 
     private void newGameBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameBtnActionPerformed
         menuScreen.setVisible(false);
-        highScore.setVisible(false);
+        //highScore.setVisible(false);
         jLayeredPane1.setVisible(true);
+        audioClips.get(0).play();
     }//GEN-LAST:event_newGameBtnActionPerformed
 
     private void newGameWinBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGameWinBtnActionPerformed
@@ -463,6 +505,18 @@ public class Solitaire extends javax.swing.JFrame {
         winScreen.setVisible(false);
         menuScreen.setVisible(true);
     }//GEN-LAST:event_titleScreenBtnActionPerformed
+
+    private void nameConfirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameConfirmBtnActionPerformed
+        name = jtfName.getText();
+        jtfName.setText("");
+        jLabelNameSet.setVisible(true);
+    }//GEN-LAST:event_nameConfirmBtnActionPerformed
+
+    private void jtfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNameActionPerformed
+        name = jtfName.getText();
+        jtfName.setText("");
+        jLabelNameSet.setVisible(true);
+    }//GEN-LAST:event_jtfNameActionPerformed
 
     Point initialPoint = null;
     Point xyDifference = null;
@@ -515,11 +569,15 @@ public class Solitaire extends javax.swing.JFrame {
     public java.awt.Label ScoreAndMove;
     public javax.swing.JPanel WinSlot;
     public javax.swing.JTextArea highScore;
+    public javax.swing.JLabel jLabelNameSet;
+    public javax.swing.JLabel jLabelYourName;
     public javax.swing.JLayeredPane jLayeredPane1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPopupMenu jPopupMenu1;
     public javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTextField jtfName;
     public javax.swing.JPanel menuScreen;
+    public javax.swing.JButton nameConfirmBtn;
     public javax.swing.JButton newGameBtn;
     public javax.swing.JButton newGameWinBtn;
     public javax.swing.JButton rankScreenBtn;
@@ -555,6 +613,7 @@ public class Solitaire extends javax.swing.JFrame {
     private SortedListInterface<Player> player = new SortedLinkedList<>();
     int score = 1000;
     int move = 0;
+    String name = "";
     int ranking_display = 1;
     int winPiles = 0;
 
@@ -657,15 +716,21 @@ public class Solitaire extends javax.swing.JFrame {
     private void initializeAudio() {
         String url;
 
-        //♬ Sound Effect for Taking Card (Line 637)
+        //♬ Sound Effect for Starting Game (Line )
+	//AND Dawring Card from Draw Deck (Line )
+	url = "sounds/Shuffling_Cards.wav";
+        audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
+        sound.add(new Sound(1, "Shuffling_Cards"));
+
+	//♬ Sound Effect for Taking Card (Line )
         url = "sounds/Card_Take.wav";
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
-        sound.add(new Sound(1, "Card_Take"));
+        sound.add(new Sound(2, "Card_Take"));
 
-        //♬ Sound Effect for Putting Card (Line 700)
+        //♬ Sound Effect for Putting Card (Line )
         url = "sounds/Card_Put.wav";
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
-        sound.add(new Sound(2, "Card_Put"));
+        sound.add(new Sound(3, "Card_Put"));
 
         //♬ BGM for the game (Loop available)
         try {
@@ -674,7 +739,6 @@ public class Solitaire extends javax.swing.JFrame {
             clip.open(audioIn);
             clip.start();
             clip.loop(Clip.LOOP_CONTINUOUSLY);
-            System.out.println("BGM started");
         } catch (Exception exception) {
             System.out.println("Cannot play the BGM");
         }
@@ -705,23 +769,27 @@ public class Solitaire extends javax.swing.JFrame {
         jLayeredPane1.setVisible(false);
         highScore.setVisible(false);
         winScreen.setVisible(false);
+        jLabelNameSet.setVisible(false);
     }
 
     private void initializeList() {
-        player.add(new Player(500, 135, "Kenny"));
-        player.add(new Player(450, 140, "Tiger"));
-        player.add(new Player(330, 152, "Lion"));
+        //Score start from 1000
+        //Each winPiles++, +500 score
+        player.add(new Player(3100, 140, "Tiger"));
+        player.add(new Player(3150, 135, "Kenny"));       
+        player.add(new Player(2980, 152, "Lion"));
+        player.add(new Player(3500, 100, "KING"));
     }
 
     private String formatHighScore() {
-        String opRank = "HIGH SCORE || MOVE || NAME\n";
+        String opRank = "H.SCORE || MOVE || NAME\n";
         Iterator<Player> ps = player.getIterator();
         int i = 0;
 
         while (ps.hasNext()) {
             Player p = ps.next();
 
-            highScore.setText(opRank += (i + 1) + ". " + p.getScore() + "                  "
+            highScore.setText(opRank += (i + 1) + ". " + p.getScore() + "         "
                     + p.getMove() + "         " + p.getName() + "\n");
             i++;
         }
@@ -854,7 +922,7 @@ public class Solitaire extends javax.swing.JFrame {
                         xyDifference = new Point();
                         xyDifference.x = mp.x - bounds.x;
                         xyDifference.y = mp.y - bounds.y;
-                        audioClips.get(0).play();
+                        audioClips.get(1).play();
 
                         //if its over slot 8 and valid
                         if (mouseOverDrawCard(mousePoint)) {
@@ -933,15 +1001,12 @@ public class Solitaire extends javax.swing.JFrame {
 
                     }
                     System.out.println("drawCard");
+                    audioClips.get(0).play();
                 }
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     xyDifference = null;
-                    audioClips.get(1).play();
-                    move++;
-                    score -= 10;
-                    ScoreAndMove.setText("Move :" + move + " " + "Score :" + score);
 
                     //snaps the card to slot 1, clears the temp arraylist
                     if (cardOverCardSlot(CardSlot1) && cardSlotIndex != 0 && (checkCard(cardsInSlot1) || emptySlot(cardsInSlot1))) {
@@ -962,10 +1027,16 @@ public class Solitaire extends javax.swing.JFrame {
                         snapCardsToCardSlot(CardSlot8, cardsInSlot8);
                     } else {
                         revertBackToPreviousCardSlot();
+                        move--;
+                        score += 10;
                     }
                     
                     revalidateCards();
                     cardIndex = 0;
+                    audioClips.get(2).play();
+                    move++;
+                    score -= 10;
+                    ScoreAndMove.setText("Move :" + move + " " + "Score :" + score);
 
                     //win condition
                     //if(checkWinPiles(cardsInSlot1)) {
@@ -1051,12 +1122,16 @@ public class Solitaire extends javax.swing.JFrame {
                     }
 
                     winPiles++;
+                    score+=500;
+                    ScoreAndMove.setText("Move :" + move + " " + "Score :" + score);
+                    audioClips.get(0).play();
 
                     if (winPiles == 7) {
                         menuScreen.setVisible(false);
                         highScore.setVisible(false);
                         jLayeredPane1.setVisible(false);
                         winScreen.setVisible(true);
+                        player.add(new Player(score, move, name));
                     }
                 }
 
