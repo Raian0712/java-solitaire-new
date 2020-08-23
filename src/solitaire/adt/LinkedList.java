@@ -1,17 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package solitaire.adt;
 
-/**
- *
- * @author USER
- */
-public class LinkedList<T> {
-
-    /*private Node firstNode;
+public class LinkedList<T> implements LinkedListInterface<T> {
+    private Node firstNode;
     private int length = 0;
 
     @Override
@@ -61,12 +51,9 @@ public class LinkedList<T> {
 
     @Override
     public boolean clear() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public boolean replace(T newEntry, int position) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        firstNode.next = null;
+        length = 0;
+        return true;
     }
 
     @Override
@@ -171,6 +158,5 @@ public class LinkedList<T> {
             currentNode = currentNode.next;
         }
         return outputStr;
-    }*/
-
+    }
 }
