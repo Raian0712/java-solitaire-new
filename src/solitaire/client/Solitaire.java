@@ -711,18 +711,18 @@ public class Solitaire extends javax.swing.JFrame {
     private void initializeAudio() {
         String url;
 
-        //♬ Sound Effect for Starting Game (Line )
-	//AND Dawring Card from Draw Deck (Line )
+        //♬ Sound Effect for Starting Game (Line 494)
+	//AND Dawring And Pushing CardLine 996 & 1099)
 	url = "sounds/Shuffling_Cards.wav";
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
         sound.add(new Sound(1, "Shuffling_Cards"));
 
-	//♬ Sound Effect for Taking Card (Line )
+	//♬ Sound Effect for Taking Card (Line 919)
         url = "sounds/Card_Take.wav";
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
         sound.add(new Sound(2, "Card_Take"));
 
-        //♬ Sound Effect for Putting Card (Line )
+        //♬ Sound Effect for Putting Card (Line 1028)
         url = "sounds/Card_Put.wav";
         audioClips.add(Applet.newAudioClip(this.getClass().getResource(url)));
         sound.add(new Sound(3, "Card_Put"));
