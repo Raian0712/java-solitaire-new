@@ -1103,6 +1103,8 @@ public class Solitaire extends javax.swing.JFrame {
 
                     for (int i = 0; i < cardsInPiles.getLength(); i++) {
                         cardsInPiles.get(i).setLocation(WinSlot.getX() + (winPiles * 20), WinSlot.getY());
+                        cardsInPiles.get(i).valid = false;
+                        cardsInPiles.get(i).drawValid = false;
                     }
                     
                     if (cardsInSlot.length() >= 1) {
@@ -1141,7 +1143,7 @@ public class Solitaire extends javax.swing.JFrame {
                         cardSlotsList.get(cardSlotIndex).getEntry(cardIndex).setCards(cardSlotsList.get(cardSlotIndex).getEntry(cardIndex).value);
                     }
 
-                    //cardsDragged.clear();
+                    cardsDragged.clear();
                 }
 
                 private void revertBackToPreviousCardSlot() {
@@ -1246,7 +1248,6 @@ public class Solitaire extends javax.swing.JFrame {
             if (!valid) {
                 setIcon(new ImageIcon(getClass().getResource("/solitaire/client/image/cardback.png")));
             } else {
-                System.out.println(value);
                 setIcon(new ImageIcon(getClass().getResource("/solitaire/client/image/card" + value + ".png")));
             }
         }

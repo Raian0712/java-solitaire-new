@@ -51,7 +51,9 @@ public class LinkedList<T> implements LinkedListInterface<T> {
 
     @Override
     public boolean clear() {
-        firstNode.next = null;
+        if (firstNode != null) {
+            firstNode.next = null;
+        }
         length = 0;
         return true;
     }
