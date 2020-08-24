@@ -2,6 +2,7 @@ package solitaire.client;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Point;
@@ -920,6 +921,25 @@ public class Solitaire extends javax.swing.JFrame {
         public DragLabel() {
             MouseAdapter ma = new MouseAdapter() {
                 private Point xyDifference;
+                
+                //Card glow effect
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    if (valid || drawValid) {
+                        if (drawValid) {
+                            setBorder(BorderFactory.createLineBorder(Color.green));
+                        } else if (valid) {
+                            setBorder(BorderFactory.createLineBorder(Color.red));
+                        }
+                        repaint();
+                    }
+                }
+                
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    setBorder(BorderFactory.createEmptyBorder());
+                    repaint();
+                }
 
                 @Override
                 public void mousePressed(MouseEvent e) {
@@ -935,16 +955,16 @@ public class Solitaire extends javax.swing.JFrame {
                         xyDifference.x = mp.x - bounds.x;
                         xyDifference.y = mp.y - bounds.y;
                         audioClips.get(1).play();
-
-                        //if its over slot 8 and valid
+                        
                         if (mouseOverDrawCard(mousePoint)) {
                             distCards();
                             checkValidAfterDraw();
                         }
+                        //if its over slot 8 and valid
                         if (mouseOverCardSlotAndValid(mousePoint, CardSlot8)) {
                             getCards(cardsInSlot8);
                             cardSlotIndex = 7;
-                            //if its over slot 7 and valid and so on...
+                        //if its over slot 7 and valid and so on...
                         } else if (mouseOverCardSlotAndValid(mousePoint, CardSlot7)) {
                             getCards(cardsInSlot7);
                             cardSlotIndex = 6;
